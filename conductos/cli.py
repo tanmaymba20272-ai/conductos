@@ -24,7 +24,6 @@ from conductos.ops_pod.state_machine import Case, State
 from conductos.ops_pod.supervisor import load_policy, route
 from conductos.ops_pod.triage import RULES_KEYWORDS, triage
 
-RAW = Path("data/raw/cfpb.jsonl")
 GOLDEN = Path("data/golden/cfpb_sample.jsonl")  # fixed, seeded sample from the CFPB narratives archive
 RUNS = Path("results/runs")
 LATEST = Path("results")
@@ -53,8 +52,6 @@ def cmd_build_sample(a: argparse.Namespace) -> None:
 def _source() -> Path:
     if GOLDEN.exists():
         return GOLDEN
-    if RAW.exists():
-        return RAW
     raise RuntimeError("No complaint sample found. Run `conductos build-sample` first (or the build-sample workflow).")
 
 

@@ -1,9 +1,8 @@
-"""CFPB consumer complaints: archive sampling (primary) and live API (metadata only).
+"""CFPB consumer complaints, sampled from the CFPB narratives archive.
 
 On 14 Aug 2026 the CFPB stopped publishing complaint narratives in its live database. Narratives
 published before then are in the FOIA narratives archive (zip exports). ConductOS therefore builds
 a fixed, seeded golden sample from the archive once, and evaluates every model version against it.
-The live API is kept for metadata-only uses (it no longer returns `complaint_what_happened`).
 
 No API key is needed. CFPB already scrubs personal data in narratives as XXXX.
 """
@@ -11,16 +10,11 @@ No API key is needed. CFPB already scrubs personal data in narratives as XXXX.
 from __future__ import annotations
 
 import json
-import time
-import urllib.error
-import urllib.parse
 import urllib.request
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from conductos.data.taxonomy import map_product
-
-API = "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/"
 
 
 @dataclass(frozen=True)
@@ -68,56 +62,6 @@ def parse(rows: list[dict]) -> list[Complaint]:
             )
         )
     return out
-
-
-PAGE = 100
-
-
-def _get(params: dict, timeout: int, attempts: int = 3) -> object:
-    url = API + "?" + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, headers={
-        "User-Agent": "Mozilla/5.0 (conductos research; +https://github.com/tanmaymba20272-ai/conductos)",
-        "Accept": "application/json",
-    })
-    last: Exception | None = None
-    for i in range(attempts):
-        try:
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
-                return json.load(resp)
-        except urllib.error.HTTPError as e:
-            body = e.read(300).decode("utf-8", "replace")
-            last = RuntimeError(f"CFPB API HTTP {e.code} for {url}: {body}")
-        except Exception as e:  # noqa: BLE001
-            last = RuntimeError(f"CFPB API {type(e).__name__} for {url}: {e}")
-        time.sleep(2 * (i + 1))
-    raise last  # type: ignore[misc]
-
-
-def fetch(n: int = 500, date_min: str = "2025-01-01", timeout: int = 60) -> list[Complaint]:
-    """Fetch up to n recent complaints with narratives, paging 100 at a time."""
-    out: list[Complaint] = []
-    seen: set[str] = set()
-    frm = 0
-    while len(out) < n and frm < n * 4:  # over-fetch: some rows won't map
-        payload = _get({
-            "size": PAGE,
-            "frm": frm,
-            "has_narrative": "true",
-            "date_received_min": date_min,
-            "sort": "created_date_desc",
-            "no_aggs": "true",
-        }, timeout)
-        rows = _rows(payload)
-        if not rows:
-            break
-        for c in parse(rows):
-            if c.complaint_id not in seen:
-                seen.add(c.complaint_id)
-                out.append(c)
-        frm += PAGE
-    if not out:
-        raise RuntimeError("CFPB API returned no usable complaints (check filters or API changes)")
-    return out[:n]
 
 
 def save_jsonl(complaints: list[Complaint], path: Path) -> None:
