@@ -137,3 +137,26 @@ def test_evaluate_end_to_end_with_simulated_model():
     assert r["n"] == 300
     assert r["calibration"]["recalibrated_cross_fitted"]["ece"] < r["calibration"]["raw"]["ece"]
     assert "Triage evaluation" in to_markdown(r)
+
+
+def test_archive_sampling_from_csv_export(tmp_path):
+    import csv, io, zipfile
+    from conductos.data.cfpb import sample_archive
+
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(["Date received", "Product", "Sub-product", "Issue", "Sub-issue",
+                "Consumer complaint narrative", "Company", "State", "Company response to consumer", "Complaint ID"])
+    for i in range(50):
+        narrative = "" if i % 5 == 0 else f"My escrow payment was wrong, case {i}"
+        product = "Mortgage" if i % 7 else "Something unmapped"
+        w.writerow(["2026-07-15", product, "", "Escrow", "", narrative, "BANK", "NY", "Closed", str(1000 + i)])
+    z = tmp_path / "export.zip"
+    with zipfile.ZipFile(z, "w") as zf:
+        zf.writestr("complaints.csv", buf.getvalue())
+
+    a, stats = sample_archive(z, n=10, seed=1)
+    b, _ = sample_archive(z, n=10, seed=1)
+    assert len(a) == 10 and [c.complaint_id for c in a] == [c.complaint_id for c in b]  # reproducible
+    assert all(c.narrative and c.product_label == "mortgage" for c in a)
+    assert stats["rows"] == 50 and stats["usable"] < 50

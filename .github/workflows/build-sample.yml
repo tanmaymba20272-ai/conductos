@@ -1,0 +1,39 @@
+name: build-sample
+
+# One-off: build the fixed golden sample from the CFPB narratives archive and commit it.
+# No API keys or model calls; only downloads a public CFPB export.
+
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: "Complaints to sample"
+        default: "1000"
+      seed:
+        description: "Random seed (keep fixed for reproducibility)"
+        default: "2026"
+      url:
+        description: "Archive export zip URL"
+        default: "https://files.consumerfinance.gov/f/documents/CCDB_Export_20_July_2026.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: Build golden sample
+        run: conductos build-sample --n "${{ github.event.inputs.n }}" --seed "${{ github.event.inputs.seed }}" --url "${{ github.event.inputs.url }}"
+      - name: Commit sample
+        run: |
+          git config user.name "conductos-harness"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/golden/
+          git commit -m "data: golden sample from CFPB narratives archive" || echo "no changes"
+          git push

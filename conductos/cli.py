@@ -1,6 +1,6 @@
 """ConductOS command line.
 
-    conductos fetch    --n 500                 # CFPB complaints -> data/raw/cfpb.jsonl
+    conductos build-sample --n 1000           # one-off: seeded golden sample from the CFPB archive
     conductos triage   --backend jev           # System One triage + supervisor routing
     conductos evaluate                         # harness report -> results/latest.{json,md}
     conductos skeleton --n 500                 # all of the above (walking skeleton)
@@ -25,6 +25,7 @@ from conductos.ops_pod.supervisor import load_policy, route
 from conductos.ops_pod.triage import RULES_KEYWORDS, triage
 
 RAW = Path("data/raw/cfpb.jsonl")
+GOLDEN = Path("data/golden/cfpb_sample.jsonl")  # fixed, seeded sample from the CFPB narratives archive
 RUNS = Path("results/runs")
 LATEST = Path("results")
 
@@ -38,11 +39,23 @@ def _load_dotenv(path: Path = Path(".env")) -> None:
             os.environ.setdefault(k.strip(), v.strip())
 
 
-def cmd_fetch(a: argparse.Namespace) -> None:
-    complaints = cfpb.fetch(n=a.n, date_min=a.since)
-    cfpb.save_jsonl(complaints, RAW)
-    print(f"Saved {len(complaints)} complaints -> {RAW}")
-    print("Label mix:", dict(Counter(c.product_label for c in complaints)))
+def cmd_build_sample(a: argparse.Namespace) -> None:
+    zip_path = Path(a.zip) if a.zip else cfpb.download(a.url, Path("data/raw") / Path(a.url).name)
+    print(f"Sampling {a.n} complaints from {zip_path} (seed {a.seed})")
+    complaints, stats = cfpb.sample_archive(zip_path, n=a.n, seed=a.seed)
+    cfpb.save_jsonl(complaints, GOLDEN)
+    meta = {"source": a.url if not a.zip else str(a.zip), "seed": a.seed, **stats, "sampled": len(complaints),
+            "label_mix": dict(Counter(c.product_label for c in complaints))}
+    GOLDEN.with_suffix(".meta.json").write_text(json.dumps(meta, indent=2))
+    print(json.dumps(meta, indent=2))
+
+
+def _source() -> Path:
+    if GOLDEN.exists():
+        return GOLDEN
+    if RAW.exists():
+        return RAW
+    raise RuntimeError("No complaint sample found. Run `conductos build-sample` first (or the build-sample workflow).")
 
 
 def _run(backend_name: str, complaints: list[cfpb.Complaint]) -> list[dict]:
@@ -97,7 +110,7 @@ def _read_jsonl(path: Path) -> list[dict]:
 
 
 def cmd_triage(a: argparse.Namespace) -> None:
-    complaints = cfpb.load_jsonl(RAW)[: a.n]
+    complaints = cfpb.load_jsonl(_source())[: a.n]
     rows = _run(a.backend, complaints)
     _write_jsonl(rows, RUNS / f"decisions-{a.backend}.jsonl")
 
@@ -120,8 +133,6 @@ def cmd_evaluate(a: argparse.Namespace) -> None:
 
 
 def cmd_skeleton(a: argparse.Namespace) -> None:
-    if not RAW.exists() or a.refetch:
-        cmd_fetch(a)
     a.backend = "rules"
     cmd_triage(a)
     a.backend = "jev"
@@ -134,10 +145,12 @@ def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="conductos")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    f = sub.add_parser("fetch")
-    f.add_argument("--n", type=int, default=500)
-    f.add_argument("--since", default="2025-01-01")
-    f.set_defaults(func=cmd_fetch)
+    b = sub.add_parser("build-sample")
+    b.add_argument("--n", type=int, default=1000)
+    b.add_argument("--seed", type=int, default=2026)
+    b.add_argument("--url", default=cfpb.DEFAULT_ARCHIVE)
+    b.add_argument("--zip", help="use an already-downloaded export zip instead of --url")
+    b.set_defaults(func=cmd_build_sample)
 
     t = sub.add_parser("triage")
     t.add_argument("--backend", choices=["jev", "rules"], default="jev")
@@ -151,9 +164,7 @@ def main(argv: list[str] | None = None) -> None:
 
     s = sub.add_parser("skeleton")
     s.add_argument("--n", type=int, default=500)
-    s.add_argument("--since", default="2025-01-01")
     s.add_argument("--target", type=float, default=0.95)
-    s.add_argument("--refetch", action="store_true")
     s.add_argument("--publish")
     s.set_defaults(func=cmd_skeleton)
 

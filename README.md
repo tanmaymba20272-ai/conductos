@@ -44,7 +44,7 @@ flowchart LR
 | **B · Ops Pod** | [`conductos/ops_pod`](conductos/ops_pod) | Triage agent, typed contracts, case state machine, deterministic supervisor, [autonomy policy](policy/autonomy.yaml) | Agent topology, state machines, contracts, human-agent collaboration |
 | **C · Eval Harness** | [`conductos/eval_harness`](conductos/eval_harness) | Reliability bins, ECE, Brier, cross-fitted isotonic recalibration, Wilson-bound thresholds, keyword baseline | Statistical rigor under AI non-determinism |
 
-Data: the [CFPB Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/). It is public, uses real consumer narratives, and needs no key.
+Data: real consumer complaint narratives from the [CFPB narratives archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/). The CFPB stopped publishing narratives in its live database on 14 August 2026, so ConductOS builds a **fixed, seeded golden sample** of 1,000 complaints from the archive (`data/golden/`). Every model version is evaluated on the same cases, so a change in the numbers means the model changed, not the data.
 
 ## Run it
 
@@ -53,7 +53,8 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 cp .env.example .env            # add TYPESAFE_API_KEY. Never commit .env
 pytest -q                       # runs offline, no key needed
-conductos skeleton --n 500      # fetch → rules baseline → Jev triage → evaluation
+conductos build-sample --n 1000 # one-off: download a CFPB archive export, seeded sample (skip if data/golden exists)
+conductos skeleton --n 500      # rules baseline → Jev triage → evaluation
 cat results/latest.md
 ```
 
