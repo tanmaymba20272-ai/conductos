@@ -1,20 +1,45 @@
 {
-  "source": "https://files.consumerfinance.gov/f/documents/CCDB_Export_20_July_2026.zip",
+  "sources": [
+    "https://files.consumerfinance.gov/f/documents/CCDB_Export_20_July_2026.zip",
+    "https://files.consumerfinance.gov/f/documents/CCDB_Export_19_June_2026.zip",
+    "https://files.consumerfinance.gov/f/documents/CCDB_Export_18_May_2026.zip",
+    "https://files.consumerfinance.gov/f/documents/CCDB_Export_17_April_2026.zip"
+  ],
   "seed": 2026,
-  "rows": 672036,
-  "usable": 10002,
-  "sampled": 1000,
-  "label_mix": {
-    "mortgage": 67,
-    "debt_collection": 266,
-    "bank_account": 223,
-    "student_loan": 34,
-    "credit_card": 163,
-    "prepaid_card": 15,
-    "vehicle_loan": 52,
-    "debt_management": 9,
-    "money_transfer": 75,
-    "personal_loan": 53,
-    "credit_reporting": 43
+  "companies": [
+    "BANK OF AMERICA, NATIONAL ASSOCIATION",
+    "CAPITAL ONE FINANCIAL CORPORATION",
+    "CITIBANK, N.A.",
+    "JPMORGAN CHASE & CO.",
+    "U.S. BANCORP",
+    "WELLS FARGO & COMPANY"
+  ],
+  "rows": 2531063,
+  "usable": 13380,
+  "sampled": 2000,
+  "split": {
+    "tune": 1000,
+    "test": 1000
+  },
+  "company_mix": {
+    "WELLS FARGO & COMPANY": 380,
+    "CITIBANK, N.A.": 375,
+    "JPMORGAN CHASE & CO.": 354,
+    "BANK OF AMERICA, NATIONAL ASSOCIATION": 331,
+    "CAPITAL ONE FINANCIAL CORPORATION": 444,
+    "U.S. BANCORP": 116
+  },
+  "product_mix": {
+    "Mortgage": 57,
+    "Credit card": 849,
+    "Debt collection": 132,
+    "Checking or savings account": 778,
+    "Vehicle loan or lease": 50,
+    "Money transfer, virtual currency, or money service": 107,
+    "Prepaid card": 11,
+    "Payday loan, title loan, personal loan, or advance loan": 6,
+    "Debt or credit management": 3,
+    "Credit reporting or other personal consumer reports": 6,
+    "Student loan": 1
   }
 }
