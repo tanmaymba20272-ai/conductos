@@ -160,8 +160,18 @@ def main(argv: list[str] | None = None) -> None:
     args = p.parse_args(argv)
     needs_jev = args.cmd == "skeleton" or (args.cmd == "triage" and args.backend == "jev")
     if needs_jev and not os.environ.get("TYPESAFE_API_KEY"):
-        sys.exit("TYPESAFE_API_KEY is not set. Copy .env.example to .env and add your key.")
-    args.func(args)
+        _fail("TYPESAFE_API_KEY is not set. Locally: copy .env.example to .env. In GitHub: add it as a repository secret.")
+    try:
+        args.func(args)
+    except Exception as e:  # noqa: BLE001
+        _fail(f"{args.cmd} failed: {type(e).__name__}: {e}")
+
+
+def _fail(msg: str) -> None:
+    # In GitHub Actions, surface the reason as an annotation so it is visible without the raw log.
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"::error title=conductos::{msg.replace(chr(10), ' ')[:900]}")
+    sys.exit(msg)
 
 
 if __name__ == "__main__":

@@ -11,17 +11,17 @@ on:
         description: "Number of complaints"
         default: "500"
   schedule:
-    - cron: "17 2 * * 1" # weekly, Monday 02:17 UTC
+    - cron: "17 2 1 * *" # monthly, 1st of the month 02:17 UTC
 
 permissions:
   contents: write
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
