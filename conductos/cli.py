@@ -82,7 +82,9 @@ def _run(backend_name: str, complaints: list[cfpb.Complaint]) -> list[dict]:
     gw = Gateway(chain=chain, trace_path=RUNS / f"traces-{backend_name}.jsonl")
     policy = load_policy()
     calibrator = _load_calibrator()
-    human = {h["complaint_id"]: h["sub_team"] for h in _read_jsonl(HUMAN)} if HUMAN.exists() else {}
+    rows = _read_jsonl(HUMAN) if HUMAN.exists() else []
+    human = {h["complaint_id"]: h["sub_team"] for h in rows}
+    labeler = {h["complaint_id"]: h.get("labeler") for h in rows}
     out = []
     routes: Counter[str] = Counter()
     for i, c in enumerate(complaints, 1):
@@ -95,7 +97,7 @@ def _run(backend_name: str, complaints: list[cfpb.Complaint]) -> list[dict]:
             case.transition(State.QUARANTINED, "; ".join(rd.reasons))
         else:
             case.transition(State.TRIAGED, "triage complete")
-        out.append({**t.model_dump(), "label": human.get(c.complaint_id),
+        out.append({**t.model_dump(), "label": human.get(c.complaint_id), "labeler": labeler.get(c.complaint_id),
                     "rule_label": sub_team_for(c.cfpb_product, c.cfpb_sub_product, c.cfpb_issue),
                     "split": c.split, "narrative_head": c.narrative[:400],
                     "route": rd.route.value, "route_reasons": rd.reasons})

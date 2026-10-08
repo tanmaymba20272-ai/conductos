@@ -142,6 +142,9 @@ def test_evaluate_end_to_end_with_simulated_model():
     assert final["evaluated_split"] == "test" and final["sub_team"]["test"]["n"] == 150  # human-labeled test only
     assert final["cfpb_rule_key"]["n"] == 200  # secondary key covers every test complaint
     assert final["business_line"]["test"]["accuracy"]["value"] >= final["sub_team"]["test"]["accuracy"]["value"]
+    assert "Claude" not in dev["label_caveat"]
+    records[1]["labeler"] = "Claude (applying labeler's rules)"  # record 1 is in the tune half
+    assert "149 human-labeled, 1 labeled by Claude" in evaluate(records)["label_caveat"]
     assert final["calibrator"] and "Triage evaluation" in to_markdown(final)
 
 

@@ -105,7 +105,7 @@ def evaluate(records: list[dict], baseline: list[dict] | None = None, target: fl
         "evaluated_split": "test" if reveal_test else "tune",
         "n_total": len(scored),
         "n_human_labeled": len(rec),
-        "label_caveat": "Primary answer key = blind human labels (one labeler). Secondary = written rules on consumer-chosen CFPB fields.",
+        "label_caveat": _caveat(rec, shown),
         "sub_team": sub_team,
         "business_line": business_line,
         "calibrator": {"fit_on": "tune", "x": calibrator.x_.tolist(), "y": calibrator.y_.tolist()} if calibrator else None,
@@ -150,6 +150,13 @@ def evaluate(records: list[dict], baseline: list[dict] | None = None, target: fl
             "accuracy_when_answered": bk / len(answered) if answered else None,
         }
     return result
+
+
+def _caveat(rec: list[dict], shown: np.ndarray) -> str:
+    n = int(shown.sum())
+    ai = sum(1 for r, s in zip(rec, shown) if s and (r.get("labeler") or "").startswith("Claude"))
+    who = f"{n - ai} human-labeled" + (f", {ai} labeled by Claude applying the human labeler's rules" if ai else "")
+    return f"Primary answer key on the reported split: {who}. Secondary = written rules on consumer-chosen CFPB fields."
 
 
 def _pt(pt: m.ThresholdPoint | None) -> dict | None:
