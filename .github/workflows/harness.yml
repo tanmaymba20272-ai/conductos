@@ -11,8 +11,9 @@ on:
       n:
         description: "Number of complaints"
         default: "500"
-  schedule:
-    - cron: "17 2 * * 1" # weekly, Monday 02:17 UTC
+  # Weekly schedule paused while sub-team routing is tuned (2026-10-09). Re-enable after the final test run:
+  # schedule:
+  #   - cron: "17 2 * * 1" # weekly, Monday 02:17 UTC
 
 permissions:
   contents: write
