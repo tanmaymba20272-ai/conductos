@@ -27,6 +27,7 @@ from conductos.ops_pod.supervisor import load_policy, route
 from conductos.ops_pod.triage import RULES_KEYWORDS, triage
 
 GOLDEN = Path("data/golden/cfpb_sample.jsonl")  # fixed, seeded sample from the CFPB narratives archive
+HUMAN = Path("data/golden/human_labels.jsonl")  # blind human sub-team labels (primary answer key)
 RUNS = Path("results/runs")
 LATEST = Path("results")
 
@@ -81,6 +82,7 @@ def _run(backend_name: str, complaints: list[cfpb.Complaint]) -> list[dict]:
     gw = Gateway(chain=chain, trace_path=RUNS / f"traces-{backend_name}.jsonl")
     policy = load_policy()
     calibrator = _load_calibrator()
+    human = {h["complaint_id"]: h["sub_team"] for h in _read_jsonl(HUMAN)} if HUMAN.exists() else {}
     out = []
     routes: Counter[str] = Counter()
     for i, c in enumerate(complaints, 1):
@@ -93,7 +95,8 @@ def _run(backend_name: str, complaints: list[cfpb.Complaint]) -> list[dict]:
             case.transition(State.QUARANTINED, "; ".join(rd.reasons))
         else:
             case.transition(State.TRIAGED, "triage complete")
-        out.append({**t.model_dump(), "label": sub_team_for(c.cfpb_product, c.cfpb_sub_product, c.cfpb_issue),
+        out.append({**t.model_dump(), "label": human.get(c.complaint_id),
+                    "rule_label": sub_team_for(c.cfpb_product, c.cfpb_sub_product, c.cfpb_issue),
                     "split": c.split, "narrative_head": c.narrative[:400],
                     "route": rd.route.value, "route_reasons": rd.reasons})
         if i % 50 == 0:

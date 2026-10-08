@@ -130,7 +130,8 @@ def test_evaluate_end_to_end_with_simulated_model():
         conf = rng.uniform(0.4, 1.0)
         pred = y if rng.uniform() < conf - 0.1 else teams[(i + 1) % 4]
         probs = {t: (conf if t == pred else (1 - conf) / 3) for t in teams}
-        records.append(dict(case_id=str(i), label=y, split="tune" if i % 2 else "test", sub_team=pred,
+        records.append(dict(case_id=str(i), label=y if i < 300 else None, rule_label=y,  # last 100 unlabeled by humans
+                            split="tune" if i % 2 else "test", sub_team=pred,
                             sub_team_probabilities=probs, narrative_head="text", severity=1, vulnerable_p=0.1,
                             regulatory_risk_p=0.2, injection_p=0.0, latency_ms=120.0, cost_usd=0.00002,
                             model="sim", backend="sim"))
@@ -138,7 +139,8 @@ def test_evaluate_end_to_end_with_simulated_model():
     assert dev["evaluated_split"] == "tune" and "test" not in dev["sub_team"]
     assert dev["tune_error_examples"] and all(e["split"] == "tune" for e in dev["tune_error_examples"])
     final = evaluate(records, reveal_test=True)
-    assert final["evaluated_split"] == "test" and final["sub_team"]["test"]["n"] == 200
+    assert final["evaluated_split"] == "test" and final["sub_team"]["test"]["n"] == 150  # human-labeled test only
+    assert final["cfpb_rule_key"]["n"] == 200  # secondary key covers every test complaint
     assert final["business_line"]["test"]["accuracy"]["value"] >= final["sub_team"]["test"]["accuracy"]["value"]
     assert final["calibrator"] and "Triage evaluation" in to_markdown(final)
 

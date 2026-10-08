@@ -59,7 +59,8 @@ def evaluate(records: list[dict], baseline: list[dict] | None = None, target: fl
              reveal_test: bool = False) -> dict:
     """records: [{case_id, label (sub-team), split, sub_team, sub_team_probabilities, narrative_head,
     severity, vulnerable_p, regulatory_risk_p, risk_flags, injection_p, latency_ms, cost_usd, model, backend}]"""
-    rec = [r for r in records if r.get("sub_team_probabilities")]
+    scored = [r for r in records if r.get("sub_team_probabilities")]
+    rec = [r for r in scored if r.get("label")]  # primary answer key: human labels (ADR-008 amendment 1)
     is_tune = np.array([r["split"] == "tune" for r in rec])
     labels = [r["label"] for r in rec]
     preds = [r["sub_team"] for r in rec]
@@ -102,8 +103,9 @@ def evaluate(records: list[dict], baseline: list[dict] | None = None, target: fl
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "model": rec[0]["model"] if rec else None,
         "evaluated_split": "test" if reveal_test else "tune",
-        "n_total": len(rec),
-        "label_caveat": "Answer key = written rules on CFPB product, sub-product and issue, which consumers choose when filing; a proxy, not perfect truth.",
+        "n_total": len(scored),
+        "n_human_labeled": len(rec),
+        "label_caveat": "Primary answer key = blind human labels (one labeler). Secondary = written rules on consumer-chosen CFPB fields.",
         "sub_team": sub_team,
         "business_line": business_line,
         "calibrator": {"fit_on": "tune", "x": calibrator.x_.tolist(), "y": calibrator.y_.tolist()} if calibrator else None,
@@ -127,6 +129,15 @@ def evaluate(records: list[dict], baseline: list[dict] | None = None, target: fl
             "cost_usd_total": float(sum(cost)),
             "cost_usd_per_case": float(np.mean(cost)) if cost else None,
         },
+    }
+    # secondary answer key: CFPB-rule labels on every scored complaint in the reported split
+    side = [r for r in scored if (r["split"] == "test") == reveal_test and r.get("rule_label")]
+    result["cfpb_rule_key"] = {
+        "n": len(side),
+        "sub_team_accuracy": float(np.mean([r["sub_team"] == r["rule_label"] for r in side])) if side else None,
+        "business_line_accuracy": float(np.mean([
+            max(business_line_probabilities(r["sub_team_probabilities"]).items(), key=lambda kv: kv[1])[0]
+            == SUB_TEAMS[r["rule_label"]][0] for r in side])) if side else None,
     }
     if baseline:
         keep = {rec[i]["case_id"] for i in idx}
@@ -156,7 +167,7 @@ def to_markdown(r: dict) -> str:
     lines = [
         f"# Triage evaluation — {r['generated_at']}",
         "",
-        f"Model: `{r['model']}` · Complaints: **{r['n_total']}** · Reported split: **{split}**"
+        f"Model: `{r['model']}` · Complaints: **{r['n_total']}** (human-labeled: {r['n_human_labeled']}) · Reported split: **{split}**"
         + ("" if split == "test" else " (development run; test half not revealed)"),
         "",
         f"> {r['label_caveat']}",
@@ -181,6 +192,8 @@ def to_markdown(r: dict) -> str:
                 f"coverage {pct(at['coverage'])}, precision {pct(at['precision'])}, lower bound {pct(at['precision_lower'])} → "
                 + ("**passes**" if at["passes"] else "**does not pass**") if at else "no threshold to test"))
         lines.append("")
+    ck = r["cfpb_rule_key"]
+    lines.append(f"Secondary key (CFPB rules, {ck['n']} {split} complaints): sub-team {pct(ck['sub_team_accuracy'])}, business line {pct(ck['business_line_accuracy'])}")
     if "baseline_rules" in r:
         lines.append(f"Keyword baseline ({split}): accuracy {pct(r['baseline_rules']['accuracy_all'])}")
     o = r["ops"]
