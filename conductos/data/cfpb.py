@@ -29,6 +29,7 @@ class Complaint:
     state: str | None
     company_response: str | None
     product_label: str  # operational key (consumer-chosen label, mapped)
+    split: str = "test"  # "tune" (recalibration, thresholds) or "test" (published results)
 
 
 def _rows(payload: object) -> list[dict]:
@@ -79,7 +80,6 @@ def load_jsonl(path: Path) -> list[Complaint]:
 # ---------------------------------------------------------------- archive sampling
 
 ARCHIVE_PAGE = "https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/"
-DEFAULT_ARCHIVE = "https://files.consumerfinance.gov/f/documents/CCDB_Export_20_July_2026.zip"
 
 # Export column names vary (CSV headers vs API-style keys). Normalise to the API field names.
 _ALIASES = {
@@ -137,28 +137,49 @@ def _iter_archive_rows(zip_path: Path):
                         yield _norm_row(row.get("_source", row))
 
 
-def sample_archive(zip_path: Path, n: int = 1000, seed: int = 2026) -> tuple[list[Complaint], dict]:
-    """Seeded reservoir sample of n usable complaints (narrative + mappable product)."""
+LARGE_BANKS = frozenset({  # exact CFPB company names; see data/survey/survey.json
+    "JPMORGAN CHASE & CO.",
+    "BANK OF AMERICA, NATIONAL ASSOCIATION",
+    "WELLS FARGO & COMPANY",
+    "CITIBANK, N.A.",
+    "CAPITAL ONE FINANCIAL CORPORATION",
+    "U.S. BANCORP",
+})
+
+
+def sample_archive(
+    zip_paths: list[Path], n: int = 1000, seed: int = 2026, companies: frozenset[str] | set[str] | None = None
+) -> tuple[list[Complaint], dict]:
+    """Seeded reservoir sample of n usable complaints across exports, split half tune / half test.
+
+    Usable = has a narrative, a mappable product and (if given) a company in `companies`.
+    Refuses to build if fewer than n usable complaints exist.
+    """
+    import dataclasses
     import random
 
     rng = random.Random(seed)
     reservoir: list[dict] = []
     stats = {"rows": 0, "usable": 0}
-    for row in _iter_archive_rows(zip_path):
-        stats["rows"] += 1
-        if not parse([row]):
-            continue
-        stats["usable"] += 1
-        if len(reservoir) < n:
-            reservoir.append(row)
-        else:
-            j = rng.randrange(stats["usable"])
-            if j < n:
-                reservoir[j] = row
-    if stats["rows"] and not stats["usable"]:
-        first = next(_iter_archive_rows(zip_path))
-        raise RuntimeError(f"Archive rows found but none usable; columns seen: {sorted(first)[:25]}")
+    for zip_path in zip_paths:
+        for row in _iter_archive_rows(zip_path):
+            stats["rows"] += 1
+            if companies is not None and row.get("company") not in companies:
+                continue
+            if not parse([row]):
+                continue
+            stats["usable"] += 1
+            if len(reservoir) < n:
+                reservoir.append(row)
+            else:
+                j = rng.randrange(stats["usable"])
+                if j < n:
+                    reservoir[j] = row
+    if stats["usable"] < n:
+        raise RuntimeError(f"Only {stats['usable']} eligible complaints; need {n}. Add more exports.")
     out = sorted(parse(reservoir), key=lambda c: c.complaint_id)
+    tune = set(rng.sample(range(len(out)), len(out) // 2))
+    out = [dataclasses.replace(c, split="tune" if i in tune else "test") for i, c in enumerate(out)]
     return out, stats
 
 

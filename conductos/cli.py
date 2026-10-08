@@ -39,12 +39,15 @@ def _load_dotenv(path: Path = Path(".env")) -> None:
 
 
 def cmd_build_sample(a: argparse.Namespace) -> None:
-    zip_path = Path(a.zip) if a.zip else cfpb.download(a.url, Path("data/raw") / Path(a.url).name)
-    print(f"Sampling {a.n} complaints from {zip_path} (seed {a.seed})")
-    complaints, stats = cfpb.sample_archive(zip_path, n=a.n, seed=a.seed)
+    zips = [cfpb.download(u, Path("data/raw") / Path(u).name) for u in a.url]
+    companies = cfpb.LARGE_BANKS if a.large_banks else None
+    print(f"Sampling {a.n} complaints from {len(zips)} export(s) (seed {a.seed}, large banks only: {a.large_banks})")
+    complaints, stats = cfpb.sample_archive(zips, n=a.n, seed=a.seed, companies=companies)
     cfpb.save_jsonl(complaints, GOLDEN)
-    meta = {"source": a.url if not a.zip else str(a.zip), "seed": a.seed, **stats, "sampled": len(complaints),
-            "label_mix": dict(Counter(c.product_label for c in complaints))}
+    meta = {"sources": a.url, "seed": a.seed, "companies": sorted(companies) if companies else "all", **stats,
+            "sampled": len(complaints), "split": dict(Counter(c.split for c in complaints)),
+            "company_mix": dict(Counter(c.company for c in complaints)),
+            "product_mix": dict(Counter(c.cfpb_product for c in complaints))}
     GOLDEN.with_suffix(".meta.json").write_text(json.dumps(meta, indent=2))
     print(json.dumps(meta, indent=2))
 
@@ -162,10 +165,10 @@ def main(argv: list[str] | None = None) -> None:
     v.set_defaults(func=cmd_survey)
 
     b = sub.add_parser("build-sample")
-    b.add_argument("--n", type=int, default=1000)
+    b.add_argument("--url", action="append", required=True, help="archive export zip URL (repeatable)")
+    b.add_argument("--n", type=int, default=2000)
     b.add_argument("--seed", type=int, default=2026)
-    b.add_argument("--url", default=cfpb.DEFAULT_ARCHIVE)
-    b.add_argument("--zip", help="use an already-downloaded export zip instead of --url")
+    b.add_argument("--large-banks", action="store_true", help="keep only complaints against cfpb.LARGE_BANKS")
     b.set_defaults(func=cmd_build_sample)
 
     t = sub.add_parser("triage")

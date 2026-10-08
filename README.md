@@ -53,7 +53,8 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 cp .env.example .env            # add TYPESAFE_API_KEY. Never commit .env
 pytest -q                       # runs offline, no key needed
-conductos build-sample --n 1000 # one-off: download a CFPB archive export, seeded sample (skip if data/golden exists)
+# one-off (skip if data/golden exists): large-bank sample from CFPB archive exports, split tune/test
+conductos build-sample --large-banks --n 2000 --url <export.zip> [--url <export.zip> ...]
 conductos skeleton --n 500      # rules baseline → Jev triage → evaluation
 cat results/latest.md
 ```

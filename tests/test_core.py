@@ -161,8 +161,8 @@ def test_archive_sampling_from_csv_export(tmp_path):
     with zipfile.ZipFile(z, "w") as zf:
         zf.writestr("complaints.csv", buf.getvalue())
 
-    a, stats = sample_archive(z, n=10, seed=1)
-    b, _ = sample_archive(z, n=10, seed=1)
+    a, stats = sample_archive([z], n=10, seed=1)
+    b, _ = sample_archive([z], n=10, seed=1)
     assert len(a) == 10 and [c.complaint_id for c in a] == [c.complaint_id for c in b]  # reproducible
     assert all(c.narrative and c.product_label == "mortgage" for c in a)
     assert stats["rows"] == 50 and stats["usable"] < 50
@@ -202,3 +202,28 @@ def test_survey_counts_narratives_by_company(tmp_path):
     s = survey(z)
     assert s["rows"] == 3 and s["with_narrative"] == 2
     assert s["companies"]["BIG BANK, N.A."] == 1 and s["companies"]["SMALL CO"] == 1
+
+
+def test_bank_sample_filters_companies_across_exports_and_splits(tmp_path):
+    import csv, io, zipfile
+    import pytest
+    from conductos.data.cfpb import sample_archive
+
+    def export(name, start):
+        buf = io.StringIO()
+        w = csv.writer(buf)
+        w.writerow(["Product", "Consumer complaint narrative", "Company", "Complaint ID"])
+        for i in range(start, start + 30):
+            w.writerow(["Credit card", f"story {i}", "BIG BANK, N.A." if i % 2 else "COLLECTOR LLC", str(i)])
+        z = tmp_path / name
+        with zipfile.ZipFile(z, "w") as zf:
+            zf.writestr("c.csv", buf.getvalue())
+        return z
+
+    zips = [export("a.zip", 0), export("b.zip", 100)]
+    out, stats = sample_archive(zips, n=20, seed=3, companies={"BIG BANK, N.A."})
+    assert len(out) == 20 and all(c.company == "BIG BANK, N.A." for c in out)
+    assert stats["usable"] == 30  # 15 bank rows per export
+    assert sum(c.split == "tune" for c in out) == 10 and sum(c.split == "test" for c in out) == 10
+    with pytest.raises(RuntimeError, match="Only 30"):
+        sample_archive(zips, n=40, seed=3, companies={"BIG BANK, N.A."})
