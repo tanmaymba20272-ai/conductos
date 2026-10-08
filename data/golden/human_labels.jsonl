@@ -298,3 +298,353 @@
 {"complaint_id": "24696095", "split": "tune", "sub_team": "cb_fees_overdraft", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "24704182", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "24717901", "split": "tune", "sub_team": "cb_closures_restrictions", "unsure": true, "note": "Considered Consumer Banking: Fees & overdraft", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20842342", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20852460", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20855803", "split": "test", "sub_team": "ca_auto_servicing", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20873346", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20874216", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20880166", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20885405", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": true, "note": "Considered Consumer Banking: Fraud & disputes claims", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20891046", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20923219", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20956800", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20971520", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20975064", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": true, "note": "Considered Consumer Banking: Account opening & onboarding", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20977614", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "20982087", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21017241", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21022073", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21022626", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21022890", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21032921", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21033663", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21041599", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21051359", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21058921", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21072602", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21079510", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21079645", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": true, "note": "Considered Consumer Banking: Fraud & disputes claims", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21092421", "split": "test", "sub_team": "ca_card_applications", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21094289", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21101290", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21110409", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21115912", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21150253", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21151983", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21159696", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21161156", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21164040", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21167198", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21168008", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21169692", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21187804", "split": "test", "sub_team": "hl_servicing_escrow", "unsure": true, "note": "Considered Home Lending: Loss mitigation & default", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21188375", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Payments & transfers", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21191173", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21192802", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21198467", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Card Services & Auto: Card disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21208044", "split": "test", "sub_team": "ca_auto_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21227969", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21232001", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21233984", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21242651", "split": "test", "sub_team": "cb_payments_transfers", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21249481", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21251176", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21276410", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21276916", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21300546", "split": "test", "sub_team": "cb_payments_transfers", "unsure": true, "note": "Considered Consumer Banking: Fees & overdraft", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21351530", "split": "test", "sub_team": "cb_payments_transfers", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21387938", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21391683", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21403707", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21419677", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21424913", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21430505", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": true, "note": "Considered Consumer Banking: Payments & transfers", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21449987", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21450939", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21451806", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Home Lending: Mortgage servicing & escrow", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21455876", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21457258", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21462584", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21471994", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21496923", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21514279", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21528273", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Auto servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21532477", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21543976", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21564619", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21564970", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21572748", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21573633", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21574176", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21575630", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21580883", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21581280", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Fraud & disputes claims", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21608963", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21611429", "split": "test", "sub_team": "ca_auto_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21612697", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21615884", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21633070", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card applications", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21636899", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21648678", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21665541", "split": "test", "sub_team": "hl_servicing_escrow", "unsure": true, "note": "Considered Home Lending: Mortgage origination", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21666804", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21667388", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21671666", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21675126", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21676798", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21677467", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21681448", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21682225", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21683334", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21706736", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21713782", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21716182", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21717490", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21717500", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21718213", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21718964", "split": "test", "sub_team": "cb_payments_transfers", "unsure": true, "note": "Considered Consumer Banking: Account servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21719408", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21721830", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21723378", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21726619", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21726935", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21732773", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": true, "note": "Considered Consumer Banking: Payments & transfers", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21733141", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21740063", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Consumer Banking: Account servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21751993", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21759976", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21762180", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21766899", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21769309", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21770268", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21772233", "split": "test", "sub_team": "hl_loss_mitigation", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21835447", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21848380", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21853622", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21859095", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21870750", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21870775", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Fraud & disputes claims", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21878624", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21884729", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21895825", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21901212", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21906512", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21931113", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21933252", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21946957", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21970309", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21975958", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21976513", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21979588", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21982440", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22070281", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Card Services & Auto: Card applications", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22081695", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22082642", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22103222", "split": "test", "sub_team": "ca_auto_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22110368", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22120634", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22125327", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22158195", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22164036", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22165216", "split": "test", "sub_team": "cb_payments_transfers", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22181815", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Home Lending: Mortgage origination", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22187239", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22199708", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22210254", "split": "test", "sub_team": "hl_servicing_escrow", "unsure": true, "note": "Considered Home Lending: Mortgage origination", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22217053", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22224272", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22228948", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22278850", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22292836", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22307928", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22311006", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22311382", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Fraud & disputes claims", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22320046", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22321592", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22326001", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22332487", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22355779", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22356277", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Auto servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22358829", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22366289", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22371591", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22380306", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22382030", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22382051", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22382910", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22389174", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22407716", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22412084", "split": "test", "sub_team": "cb_payments_transfers", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22429819", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22430731", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22436233", "split": "test", "sub_team": "hl_loss_mitigation", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22457864", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22461624", "split": "test", "sub_team": "cb_payments_transfers", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22468398", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22522020", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22550762", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22553847", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22573328", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22582872", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22599348", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22599703", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22602523", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22615993", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22620188", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22627764", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22629698", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22636748", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22640475", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22654480", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22676262", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22680461", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22689765", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Account opening & onboarding", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22690890", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22713403", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22747554", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22770666", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22771209", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22776023", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Auto servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22783197", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22792589", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22803152", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22810186", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22811419", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22816945", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22818534", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22963980", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22964414", "split": "test", "sub_team": "cb_payments_transfers", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22967214", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22973360", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22973725", "split": "test", "sub_team": "ca_card_applications", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23022934", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23024931", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23026910", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23028583", "split": "test", "sub_team": "ca_auto_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23030056", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23043297", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23054982", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23055496", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23057751", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23058322", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23075485", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23077260", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23080696", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23098808", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23122218", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23135023", "split": "test", "sub_team": "ca_card_applications", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23138290", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23138817", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23159746", "split": "test", "sub_team": "hl_loss_mitigation", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23164943", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23170248", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23173305", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23201346", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23201722", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Card Services & Auto: Card disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23202441", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23203801", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23204188", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23204449", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23204745", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23210803", "split": "test", "sub_team": "hl_servicing_escrow", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23217822", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23260747", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23263889", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card applications", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23265778", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23268256", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23272214", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23276062", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Auto servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23277659", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": true, "note": "Considered Card Services & Auto: Card disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23279405", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23286804", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23289030", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23292509", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23296931", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23305905", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23308474", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23311301", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card applications", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23315969", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23316270", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23317464", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Auto servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23338708", "split": "test", "sub_team": "hl_servicing_escrow", "unsure": true, "note": "Considered Home Lending: Loss mitigation & default", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23341827", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23427538", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23445456", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23447695", "split": "test", "sub_team": "cb_payments_transfers", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23448013", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23456963", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": true, "note": "Considered Card Services & Auto: Card disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23462832", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23473721", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23478699", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23478998", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23553327", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23563829", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23573249", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23586258", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23586506", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23657947", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23663443", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23678262", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23680984", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23686569", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23689979", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23693744", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23716184", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23721032", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23722985", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23764666", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23784875", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23805976", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23873862", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23882103", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23897042", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card applications", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23897774", "split": "test", "sub_team": "ca_card_applications", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23899244", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23907928", "split": "test", "sub_team": "cb_payments_transfers", "unsure": true, "note": "Considered Consumer Banking: Account servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23910362", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23910568", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23923387", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23932090", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23938324", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23941842", "split": "test", "sub_team": "cb_fees_overdraft", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23943393", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23948580", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Fees & overdraft", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23954541", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23966920", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23978453", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23980513", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23984046", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23986036", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23986399", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23993366", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23993585", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24016555", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24120688", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24121371", "split": "test", "sub_team": "ca_card_applications", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24124622", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24145295", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24151871", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24151880", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24152648", "split": "test", "sub_team": "ca_card_disputes", "unsure": true, "note": "Considered Consumer Banking: Fraud & disputes claims", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24157246", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24160359", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24181112", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24187391", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24196188", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24206735", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24232097", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24248160", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24252886", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": true, "note": "Considered Consumer Banking: Payments & transfers", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24283818", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24356334", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24380323", "split": "test", "sub_team": "hl_servicing_escrow", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24387702", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24389503", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24443222", "split": "test", "sub_team": "cb_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24512893", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Fraud & disputes claims", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24532175", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24533783", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24698441", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24703172", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24720434", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "24723843", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
