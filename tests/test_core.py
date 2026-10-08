@@ -253,7 +253,11 @@ def test_sub_team_rules():
     assert sub_team_for("Debt collection", "Mortgage debt", "Written notification about debt") == "hl_loss_mitigation"
     assert sub_team_for("Payday loan, title loan, personal loan, or advance loan", "Installment loan",
                         "Getting the loan") == "ca_card_personal_loan_servicing"
-    assert sub_team_for("Checking or savings account", "Checking account", "Closing an account") == "cb_closures_restrictions"
+    assert sub_team_for("Checking or savings account", "Checking account", "Closing an account") == "sh_closures_restrictions"
+    # ADR-008 amendment 2, rule 1: card closures go to the shared closures team
+    assert sub_team_for("Credit card", "General-purpose credit card or charge card", "Closing your account") == "sh_closures_restrictions"
+    from conductos.data.taxonomy import SUB_TEAMS
+    assert SUB_TEAMS["sh_closures_restrictions"][0] == "Shared"
     assert sub_team_for("Mortgage", "FHA mortgage", "Struggling to pay mortgage") == "hl_loss_mitigation"
     with pytest.raises(ValueError):
         sub_team_for("Some new product", None, None)

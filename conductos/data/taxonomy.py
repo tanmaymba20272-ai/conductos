@@ -52,20 +52,20 @@ def map_product(cfpb_product: str | None, cfpb_sub_product: str | None = None) -
 # order, 2024 Zelle suit) and on dispute rules banks must follow (Reg E, Reg Z, FCRA, Reg X).
 SUB_TEAMS: dict[str, tuple[str, str]] = {
     "cb_account_servicing": ("Consumer Banking", "Everyday account servicing: deposits, access, statements, prepaid, other accounts"),
-    "cb_fraud_disputes": ("Consumer Banking", "Fraud and unauthorized-transaction claims on accounts and transfers"),
-    "cb_closures_restrictions": ("Consumer Banking", "Account closures, freezes and restrictions"),
-    "cb_opening_onboarding": ("Consumer Banking", "Opening accounts, identity checks, onboarding"),
+    "cb_fraud_disputes": ("Consumer Banking", "Fraud & error claims: unauthorized transactions and identity theft, including accounts or cards opened in the customer's name; money moved wrongly on debit, prepaid, checking or savings accounts and transfers (double charge, wrong amount)"),
+    "cb_opening_onboarding": ("Consumer Banking", "Opening checking or savings accounts, identity checks, onboarding and new-account sign-up bonuses"),
     "cb_fees_overdraft": ("Consumer Banking", "Overdraft, low-balance and account fees"),
-    "cb_payments_transfers": ("Consumer Banking", "Money transfers, wires, payment apps, money orders"),
-    "ca_card_personal_loan_servicing": ("Card Services & Auto", "Card and personal-loan servicing: terms, fees, interest, payments, rewards, closures"),
-    "ca_card_disputes": ("Card Services & Auto", "Disputed card charges and billing errors"),
+    "cb_payments_transfers": ("Consumer Banking", "Money transfers, wires, payment apps, money orders, and payments that failed or got stuck with no money moved"),
+    "ca_card_personal_loan_servicing": ("Card Services & Auto", "Card and personal-loan servicing: terms, fees, interest, payments, rewards, credit limit changes"),
+    "ca_card_disputes": ("Card Services & Auto", "Disputed credit card charges: unauthorized or fraudulent charges, billing errors, double or wrong charges"),
     "ca_collections_recoveries": ("Card Services & Auto", "Collections, charge-offs, repossession, hardship on card, auto and unsecured debt"),
     "ca_card_applications": ("Card Services & Auto", "Card applications, approvals and credit decisions"),
     "ca_auto_servicing": ("Card Services & Auto", "Auto loan and lease servicing"),
     "hl_servicing_escrow": ("Home Lending", "Mortgage payments, escrow and servicing"),
     "hl_loss_mitigation": ("Home Lending", "Mortgage hardship, modifications, foreclosure and mortgage debt"),
     "hl_origination": ("Home Lending", "Mortgage applications, refinancing and closing"),
-    "sh_credit_bureau_disputes": ("Shared", "Disputes about what the bank reported to credit bureaus"),
+    "sh_closures_restrictions": ("Shared", "Closures, freezes and restrictions of any account (checking, savings or credit card), including closures triggered by suspected fraud"),
+    "sh_credit_bureau_disputes": ("Shared", "Disputes that the bank reported wrong information to credit bureaus; not bank decisions that used a credit report"),
 }
 
 _BUREAU_ISSUES = {
@@ -83,7 +83,7 @@ def sub_team_for(product: str, sub_product: str | None, issue: str | None) -> st
     if product == "Checking or savings account":
         return {
             "Opening an account": "cb_opening_onboarding",
-            "Closing an account": "cb_closures_restrictions",
+            "Closing an account": "sh_closures_restrictions",
             "Problem caused by your funds being low": "cb_fees_overdraft",
             "Problem with a lender or other company charging your account": "cb_fraud_disputes",
         }.get(issue, "cb_account_servicing")
@@ -99,6 +99,7 @@ def sub_team_for(product: str, sub_product: str | None, issue: str | None) -> st
             "Problem with a purchase shown on your statement": "ca_card_disputes",
             "Problem with a company's investigation into an existing problem": "ca_card_disputes",
             "Getting a credit card": "ca_card_applications",
+            "Closing your account": "sh_closures_restrictions",
             "Struggling to pay your bill": "ca_collections_recoveries",
         }.get(issue, "ca_card_personal_loan_servicing")
     if product.startswith("Payday loan"):

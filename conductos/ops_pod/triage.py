@@ -69,7 +69,7 @@ RULES_KEYWORDS = {
     "sub_team": {
         "cb_account_servicing": ["checking", "savings", "statement", "branch", "atm", "debit card", "deposit"],
         "cb_fraud_disputes": ["fraud", "unauthorized", "scam", "scammed", "did not authorize", "stolen"],
-        "cb_closures_restrictions": ["closed my account", "account was closed", "frozen", "froze", "restricted", "locked"],
+        "sh_closures_restrictions": ["closed my account", "account was closed", "frozen", "froze", "restricted", "locked"],
         "cb_opening_onboarding": ["open an account", "opening an account", "new account", "identity verification"],
         "cb_fees_overdraft": ["overdraft", "nsf", "insufficient funds", "monthly fee", "maintenance fee"],
         "cb_payments_transfers": ["zelle", "wire", "transfer", "money order", "cashier's check", "remittance"],
