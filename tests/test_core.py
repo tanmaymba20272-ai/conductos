@@ -184,3 +184,21 @@ def test_triage_with_rules_backend_handles_unanswered_flags():
     gw = Gateway(chain=[RulesBackend(RULES_KEYWORDS)])
     t = triage(CleanCase(case_id="1", text="My mortgage escrow is wrong", received="2026-07-01"), gw)
     assert t.product == "mortgage" and t.regulatory_risk_p is None and t.risk_flags == {}
+
+
+def test_survey_counts_narratives_by_company(tmp_path):
+    import csv, io, zipfile
+    from conductos.data.cfpb import survey
+
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(["Product", "Consumer complaint narrative", "Company", "Complaint ID"])
+    w.writerow(["Credit card", "story", "BIG BANK, N.A.", "1"])
+    w.writerow(["Credit card", "", "BIG BANK, N.A.", "2"])  # no narrative: not counted
+    w.writerow(["Mortgage", "story", "SMALL CO", "3"])
+    z = tmp_path / "e.zip"
+    with zipfile.ZipFile(z, "w") as zf:
+        zf.writestr("c.csv", buf.getvalue())
+    s = survey(z)
+    assert s["rows"] == 3 and s["with_narrative"] == 2
+    assert s["companies"]["BIG BANK, N.A."] == 1 and s["companies"]["SMALL CO"] == 1

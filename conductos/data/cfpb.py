@@ -174,3 +174,16 @@ def download(url: str, dest: Path, timeout: int = 600) -> Path:
         while chunk := resp.read(1 << 20):
             f.write(chunk)
     return dest
+
+
+def survey(zip_path: Path) -> dict:
+    """Count complaints with narratives per company in one export (no sampling, no models)."""
+    from collections import Counter
+
+    companies: Counter[str] = Counter()
+    rows = 0
+    for row in _iter_archive_rows(zip_path):
+        rows += 1
+        if (row.get("complaint_what_happened") or "").strip():
+            companies[row.get("company") or "(unknown)"] += 1
+    return {"rows": rows, "with_narrative": sum(companies.values()), "companies": dict(companies.most_common())}

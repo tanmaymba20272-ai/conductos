@@ -49,6 +49,19 @@ def cmd_build_sample(a: argparse.Namespace) -> None:
     print(json.dumps(meta, indent=2))
 
 
+def cmd_survey(a: argparse.Namespace) -> None:
+    out = {}
+    for url in a.url:
+        zip_path = cfpb.download(url, Path("data/raw") / Path(url).name)
+        s = cfpb.survey(zip_path)
+        s["companies"] = dict(list(s["companies"].items())[: a.top])
+        out[url] = s
+        print(f"{Path(url).name}: {s['rows']} rows, {s['with_narrative']} with narratives")
+    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(a.out).write_text(json.dumps(out, indent=2))
+    print(f"Survey -> {a.out}")
+
+
 def _source() -> Path:
     if GOLDEN.exists():
         return GOLDEN
@@ -141,6 +154,12 @@ def main(argv: list[str] | None = None) -> None:
     _load_dotenv()
     p = argparse.ArgumentParser(prog="conductos")
     sub = p.add_subparsers(dest="cmd", required=True)
+
+    v = sub.add_parser("survey")
+    v.add_argument("--url", action="append", required=True, help="archive export zip URL (repeatable)")
+    v.add_argument("--top", type=int, default=80, help="companies to keep per export")
+    v.add_argument("--out", default="data/survey/survey.json")
+    v.set_defaults(func=cmd_survey)
 
     b = sub.add_parser("build-sample")
     b.add_argument("--n", type=int, default=1000)

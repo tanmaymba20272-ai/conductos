@@ -1,0 +1,35 @@
+name: survey
+
+# Count complaints with narratives per company in CFPB archive exports. No models, no API keys.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Comma-separated archive export zip URLs"
+        default: "https://files.consumerfinance.gov/f/documents/CCDB_Export_20_July_2026.zip,https://files.consumerfinance.gov/f/documents/CCDB_Export_19_June_2026.zip,https://files.consumerfinance.gov/f/documents/CCDB_Export_18_May_2026.zip,https://files.consumerfinance.gov/f/documents/CCDB_Export_17_April_2026.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  survey:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: Survey exports
+        run: |
+          args=""
+          for u in $(echo "${{ github.event.inputs.urls }}" | tr ',' ' '); do args="$args --url $u"; done
+          conductos survey $args
+      - name: Commit survey
+        run: |
+          git config user.name "conductos-harness"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/survey/
+          git commit -m "data: archive survey (narratives per company)" || echo "no changes"
+          git push
