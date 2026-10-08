@@ -60,7 +60,7 @@ cat results/latest.md
 
 A 500-complaint run costs a few cents of Jev usage at list price.
 
-The `harness` GitHub Action runs the same pipeline monthly and commits `results/public.json`. The portfolio site reads that file, so the published numbers are always the latest real run.
+The `harness` GitHub Action runs the same pipeline weekly and commits `results/public.json`. The portfolio site reads that file, so the published numbers are always the latest real run.
 
 ## Status and honest caveats
 
