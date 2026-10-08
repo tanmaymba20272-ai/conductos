@@ -1,0 +1,20 @@
+{
+  "source": "https://files.consumerfinance.gov/f/documents/CCDB_Export_20_July_2026.zip",
+  "seed": 2026,
+  "rows": 672036,
+  "usable": 10002,
+  "sampled": 1000,
+  "label_mix": {
+    "mortgage": 67,
+    "debt_collection": 266,
+    "bank_account": 223,
+    "student_loan": 34,
+    "credit_card": 163,
+    "prepaid_card": 15,
+    "vehicle_loan": 52,
+    "debt_management": 9,
+    "money_transfer": 75,
+    "personal_loan": 53,
+    "credit_reporting": 43
+  }
+}
