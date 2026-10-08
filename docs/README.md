@@ -1,6 +1,6 @@
 # ConductOS product documentation
 
-The full documents live in Notion. This index maps each document to the code it governs.
+The full documents live in the [Notion workspace](https://tar-caper-b4a.notion.site/ConductOS-Agentic-Conduct-Financial-Crime-Operations-Platform-3f38ca537a5d81c68db7d530b28db785). This index maps each document to the code it governs.
 
 | Document | Governs |
 |---|---|
@@ -15,4 +15,3 @@ The full documents live in Notion. This index maps each document to the code it 
 | HITL Review Experience Spec | Review queue (roadmap phase 2) |
 | Metrics Framework · Outcome Roadmap · Decision Log (ADRs) | Delivery |
 
-The Notion link is published on the portfolio site.

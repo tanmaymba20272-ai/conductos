@@ -4,7 +4,7 @@
 Fast System One decisions on every case, LLM reasoning only for the hard ones, and humans in the loop wherever confidence or risk demands it.
 
 > Portfolio project by **Tanmay Mohanta**, Applied AI & AI Platform PM.
-> Site: <https://tanmaymba20272-ai.github.io> · PRDs and PM docs: Notion workspace (link on the site)
+> Site: <https://tanmaymba20272-ai.github.io> · PRDs and PM docs: [Notion workspace](https://tar-caper-b4a.notion.site/ConductOS-Agentic-Conduct-Financial-Crime-Operations-Platform-3f38ca537a5d81c68db7d530b28db785)
 
 ---
 
@@ -78,6 +78,6 @@ The `harness` GitHub Action runs the same pipeline monthly and commits `results/
 
 ## Docs
 
-The PRDs, strategy, opportunity solution tree, metrics spec, risk register, red-team review and decision log are in Notion and indexed in [`docs/`](docs/README.md).
+The PRDs, strategy, opportunity solution tree, metrics spec, risk register, red-team review and decision log are in the [Notion workspace](https://tar-caper-b4a.notion.site/ConductOS-Agentic-Conduct-Financial-Crime-Operations-Platform-3f38ca537a5d81c68db7d530b28db785) and indexed in [`docs/`](docs/README.md).
 
 License: MIT
