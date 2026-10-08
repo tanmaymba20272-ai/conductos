@@ -11,7 +11,6 @@ from typing import Callable
 
 import yaml
 
-from conductos.data.taxonomy import group_probabilities
 from conductos.ops_pod.contracts import Route, RoutingDecision, TriageDecision
 
 DEFAULT_POLICY = Path(__file__).resolve().parents[2] / "policy" / "autonomy.yaml"
@@ -36,8 +35,8 @@ def route(
                                reasons=["suspected prompt injection"], calibrated_routing_p=None,
                                autonomy_level=level)
 
-    # ADR-007: autonomy keys on the routing group, not the product tag.
-    raw = max(group_probabilities(t.product_probabilities).values()) if t.product_probabilities else None
+    # ADR-008: autonomy keys on the sub-team the complaint is routed to.
+    raw = max(t.sub_team_probabilities.values()) if t.sub_team_probabilities else None
     cal = calibrate(raw) if (calibrate and raw is not None) else None
 
     if (t.vulnerable_p or 0) >= mr["vulnerable_customer_p"]:
@@ -50,7 +49,7 @@ def route(
         return RoutingDecision(case_id=t.case_id, route=Route.REVIEW, reasons=reasons,
                                calibrated_routing_p=cal, autonomy_level=level)
 
-    th = policy["thresholds"]["routing_group"]
+    th = policy["thresholds"]["sub_team"]
     if cal is None or th["auto"] is None:
         return RoutingDecision(case_id=t.case_id, route=Route.REVIEW,
                                reasons=["no calibrated threshold published yet"],

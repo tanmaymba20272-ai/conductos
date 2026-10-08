@@ -6,7 +6,7 @@ logic combines them in code (see supervisor.py), not inside one big prompt.
 
 from __future__ import annotations
 
-from conductos.data.taxonomy import PRODUCTS
+from conductos.data.taxonomy import SUB_TEAMS
 from conductos.gateway import ChoiceQ, Gateway, NoulQ, ScoreQ
 from conductos.ops_pod.contracts import CleanCase, TriageDecision
 
@@ -18,9 +18,9 @@ SEVERITY_LEVELS = [
 ]
 
 TRIAGE_QUESTIONS = {
-    "product": ChoiceQ(
-        instructions="Which financial product is this consumer complaint mainly about?",
-        criteria=PRODUCTS,
+    "sub_team": ChoiceQ(
+        instructions="Which team at the bank should handle this customer complaint?",
+        criteria={team: desc for team, (_, desc) in SUB_TEAMS.items()},
     ),
     "severity": ScoreQ(
         instructions="How severe is the harm to the consumer described in this complaint?",
@@ -66,18 +66,22 @@ RISK_FLAGS = ("alleged_discrimination", "alleged_deception", "threats_or_harassm
 
 # Keyword baseline for the rules backend (benchmark + fallback). Deliberately simple.
 RULES_KEYWORDS = {
-    "product": {
-        "credit_reporting": ["credit report", "credit bureau", "equifax", "experian", "transunion", "fcra", "inquiry", "credit score"],
-        "debt_collection": ["debt collector", "collection agency", "collections", "validation", "debt"],
-        "credit_card": ["credit card", "card", "apr", "statement balance", "rewards"],
-        "bank_account": ["checking", "savings", "overdraft", "deposit", "branch", "atm"],
-        "mortgage": ["mortgage", "escrow", "foreclosure", "loan modification", "servicer", "home loan"],
-        "money_transfer": ["wire", "zelle", "paypal", "venmo", "cash app", "transfer", "crypto", "bitcoin", "remittance"],
-        "vehicle_loan": ["car loan", "auto loan", "vehicle", "repossess", "lease"],
-        "student_loan": ["student loan", "navient", "nelnet", "mohela", "forgiveness", "fafsa"],
-        "personal_loan": ["payday", "title loan", "personal loan", "installment loan", "cash advance"],
-        "debt_management": ["debt settlement", "credit repair", "debt relief"],
-        "prepaid_card": ["prepaid", "gift card", "netspend", "benefit card"],
+    "sub_team": {
+        "cb_account_servicing": ["checking", "savings", "statement", "branch", "atm", "debit card", "deposit"],
+        "cb_fraud_disputes": ["fraud", "unauthorized", "scam", "scammed", "did not authorize", "stolen"],
+        "cb_closures_restrictions": ["closed my account", "account was closed", "frozen", "froze", "restricted", "locked"],
+        "cb_opening_onboarding": ["open an account", "opening an account", "new account", "identity verification"],
+        "cb_fees_overdraft": ["overdraft", "nsf", "insufficient funds", "monthly fee", "maintenance fee"],
+        "cb_payments_transfers": ["zelle", "wire", "transfer", "money order", "cashier's check", "remittance"],
+        "ca_card_personal_loan_servicing": ["credit card", "interest", "apr", "rewards", "credit limit", "personal loan", "line of credit"],
+        "ca_card_disputes": ["dispute", "chargeback", "merchant", "refund", "charge on my card", "billing error"],
+        "ca_collections_recoveries": ["collection", "collector", "charged off", "charge-off", "repossess", "debt validation"],
+        "ca_card_applications": ["application", "applied for", "approved", "denied", "declined my application"],
+        "ca_auto_servicing": ["car loan", "auto loan", "vehicle", "lease", "title"],
+        "hl_servicing_escrow": ["mortgage", "escrow", "servicer", "home loan", "property tax"],
+        "hl_loss_mitigation": ["foreclosure", "loan modification", "forbearance", "hardship", "short sale"],
+        "hl_origination": ["refinance", "closing costs", "mortgage application", "pre-approval", "underwriting"],
+        "sh_credit_bureau_disputes": ["credit report", "credit bureau", "equifax", "experian", "transunion", "fcra"],
     }
 }
 
@@ -91,8 +95,8 @@ def triage(case: CleanCase, gateway: Gateway) -> TriageDecision:
         trace_id=d.trace_id,
         model=d.result.model,
         backend=d.backend,
-        product=a["product"].value,
-        product_probabilities=a["product"].probabilities,
+        sub_team=a["sub_team"].value,
+        sub_team_probabilities=a["sub_team"].probabilities,
         severity=a["severity"].value,
         severity_probabilities=a["severity"].probabilities,
         vulnerable_p=a["vulnerable_customer"].value,

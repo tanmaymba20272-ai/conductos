@@ -17,7 +17,7 @@ actions:
 # Thresholds apply to CALIBRATED probabilities produced by the eval harness, never raw vendor scores.
 # null = not yet set: everything routes to review until the harness publishes evidence.
 thresholds:
-  routing_group:   # ADR-007: autonomy keys on the operational routing group, not the product tag
+  sub_team:   # ADR-008: autonomy keys on the sub-team; set by the policy owner from harness evidence
     auto: null
     review: null
 

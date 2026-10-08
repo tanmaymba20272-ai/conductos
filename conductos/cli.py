@@ -1,9 +1,10 @@
 """ConductOS command line.
 
-    conductos build-sample --n 1000           # one-off: seeded golden sample from the CFPB archive
+    conductos survey --url <zip>               # count narratives per company in archive exports
+    conductos build-sample --large-banks ...   # one-off: seeded 2,000-complaint sample, tune/test split
     conductos triage   --backend jev           # System One triage + supervisor routing
-    conductos evaluate                         # harness report -> results/latest.{json,md}
-    conductos skeleton --n 500                 # all of the above (walking skeleton)
+    conductos evaluate [--final]               # tune-half report; --final also reveals the test half
+    conductos skeleton [--final]               # all of the above
 """
 
 from __future__ import annotations
@@ -16,6 +17,7 @@ from collections import Counter
 from pathlib import Path
 
 from conductos.data import cfpb
+from conductos.data.taxonomy import sub_team_for
 from conductos.eval_harness.report import evaluate, to_markdown
 from conductos.gateway import Gateway
 from conductos.gateway.backends import JevBackend, RulesBackend
@@ -91,7 +93,9 @@ def _run(backend_name: str, complaints: list[cfpb.Complaint]) -> list[dict]:
             case.transition(State.QUARANTINED, "; ".join(rd.reasons))
         else:
             case.transition(State.TRIAGED, "triage complete")
-        out.append({**t.model_dump(), "label": c.product_label, "route": rd.route.value, "route_reasons": rd.reasons})
+        out.append({**t.model_dump(), "label": sub_team_for(c.cfpb_product, c.cfpb_sub_product, c.cfpb_issue),
+                    "split": c.split, "narrative_head": c.narrative[:400],
+                    "route": rd.route.value, "route_reasons": rd.reasons})
         if i % 50 == 0:
             print(f"  {backend_name}: {i}/{len(complaints)}", file=sys.stderr)
     print(f"{backend_name} routes: {dict(routes)}")
@@ -132,11 +136,13 @@ def cmd_evaluate(a: argparse.Namespace) -> None:
     primary = _read_jsonl(RUNS / "decisions-jev.jsonl")
     base_path = RUNS / "decisions-rules.jsonl"
     baseline = _read_jsonl(base_path) if base_path.exists() else None
-    report = evaluate(primary, baseline, target=a.target)
+    report = evaluate(primary, baseline, target=a.target, reveal_test=a.final)
     LATEST.mkdir(parents=True, exist_ok=True)
     (LATEST / "latest.json").write_text(json.dumps(report, indent=2))
     (LATEST / "latest.md").write_text(to_markdown(report))
     print(to_markdown(report))
+    if a.publish and not a.final:
+        sys.exit("--publish requires --final: only the one-time test-half result is published (ADR-008).")
     if a.publish:
         dest = Path(a.publish)
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -173,16 +179,18 @@ def main(argv: list[str] | None = None) -> None:
 
     t = sub.add_parser("triage")
     t.add_argument("--backend", choices=["jev", "rules"], default="jev")
-    t.add_argument("--n", type=int, default=500)
+    t.add_argument("--n", type=int, default=2000)
     t.set_defaults(func=cmd_triage)
 
     e = sub.add_parser("evaluate")
     e.add_argument("--target", type=float, default=0.95)
+    e.add_argument("--final", action="store_true", help="reveal the test half (run once, after tuning)")
     e.add_argument("--publish", help="also write a public summary JSON here (e.g. for the portfolio site)")
     e.set_defaults(func=cmd_evaluate)
 
     s = sub.add_parser("skeleton")
-    s.add_argument("--n", type=int, default=500)
+    s.add_argument("--n", type=int, default=2000)
+    s.add_argument("--final", action="store_true", help="reveal the test half (run once, after tuning)")
     s.add_argument("--target", type=float, default=0.95)
     s.add_argument("--publish")
     s.set_defaults(func=cmd_skeleton)

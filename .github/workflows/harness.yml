@@ -10,7 +10,11 @@ on:
     inputs:
       n:
         description: "Number of complaints"
-        default: "500"
+        default: "2000"
+      final:
+        description: "Final run: reveal the test half and publish (ADR-008). Leave false while tuning."
+        type: boolean
+        default: false
   # Weekly schedule paused while sub-team routing is tuned (2026-10-09). Re-enable after the final test run:
   # schedule:
   #   - cron: "17 2 * * 1" # weekly, Monday 02:17 UTC
@@ -31,7 +35,12 @@ jobs:
       - name: Walking skeleton
         env:
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
-        run: conductos skeleton --n "${{ github.event.inputs.n || 500 }}" --publish results/public.json
+        run: |
+          if [ "${{ github.event.inputs.final }}" = "true" ] || [ "${{ github.event_name }}" = "schedule" ]; then
+            conductos skeleton --n "${{ github.event.inputs.n || 2000 }}" --final --publish results/public.json
+          else
+            conductos skeleton --n "${{ github.event.inputs.n || 2000 }}"
+          fi
       - name: Commit results
         run: |
           git config user.name "conductos-harness"

@@ -9,21 +9,6 @@ noisy proxy for truth, not ground truth. The harness reports results with that c
 
 from __future__ import annotations
 
-# key -> description shown to the model (Jev Choice criteria)
-PRODUCTS: dict[str, str] = {
-    "credit_reporting": "Credit reports, credit scores, consumer reporting agencies, errors on a credit file, identity theft on a report",
-    "debt_collection": "Collection of a debt: collector calls, letters, threats, debts not owed, validation of a debt",
-    "credit_card": "Credit cards or store cards: charges, fees, rewards, disputes, card account management",
-    "bank_account": "Checking or savings accounts: deposits, withdrawals, overdrafts, account opening or closing, bank fees",
-    "mortgage": "Home loans: mortgage servicing, payments, escrow, modification, foreclosure, applying for a mortgage",
-    "money_transfer": "Money transfers, wires, payment apps, remittances, virtual currency, money services",
-    "vehicle_loan": "Auto loans or leases: payments, repossession, loan terms",
-    "student_loan": "Federal or private student loans: servicing, repayment plans, forgiveness",
-    "personal_loan": "Payday loans, title loans, installment or personal loans, cash advances",
-    "debt_management": "Debt settlement, credit repair or debt management services",
-    "prepaid_card": "Prepaid or gift cards, payroll or government benefit cards",
-}
-
 # Historical and current CFPB product names -> operational key
 CFPB_PRODUCT_MAP: dict[str, str] = {
     "Credit reporting or other personal consumer reports": "credit_reporting",
@@ -59,26 +44,6 @@ def map_product(cfpb_product: str | None, cfpb_sub_product: str | None = None) -
         if "prepaid" in cfpb_sub_product.lower() or "gift" in cfpb_sub_product.lower():
             return "prepaid_card"
     return CFPB_PRODUCT_MAP.get(cfpb_product.strip())
-
-
-# Operational routing groups (ADR-007). Products that consumers often confuse share a group,
-# so routing is judged on the decision an operations team actually acts on.
-GROUPS: dict[str, tuple[str, ...]] = {
-    "collections_credit": ("debt_collection", "credit_reporting", "debt_management"),
-    "deposits_payments": ("bank_account", "money_transfer", "prepaid_card"),
-    "cards": ("credit_card",),
-    "home_lending": ("mortgage",),
-    "consumer_lending": ("vehicle_loan", "student_loan", "personal_loan"),
-}
-GROUP_OF: dict[str, str] = {p: g for g, ps in GROUPS.items() for p in ps}
-
-
-def group_probabilities(product_probabilities: dict[str, float]) -> dict[str, float]:
-    """Sum product probabilities into routing-group probabilities."""
-    out = {g: 0.0 for g in GROUPS}
-    for p, v in product_probabilities.items():
-        out[GROUP_OF[p]] += v
-    return out
 
 
 # Synthetic bank: business lines and internal sub-teams (decision 2026-10-09).
@@ -151,3 +116,12 @@ def sub_team_for(product: str, sub_product: str | None, issue: str | None) -> st
     if product == "Debt or credit management":
         return "ca_collections_recoveries"
     raise ValueError(f"No sub-team rule for product {product!r}")
+
+
+def business_line_probabilities(sub_team_probabilities: dict[str, float]) -> dict[str, float]:
+    """Sum sub-team probabilities into business-line probabilities."""
+    out: dict[str, float] = {}
+    for team, p in sub_team_probabilities.items():
+        line = SUB_TEAMS[team][0]
+        out[line] = out.get(line, 0.0) + p
+    return out

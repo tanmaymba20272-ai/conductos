@@ -24,8 +24,8 @@ class TriageDecision(_Contract):
     trace_id: str
     model: str
     backend: str
-    product: str | None
-    product_probabilities: dict[str, float]
+    sub_team: str | None
+    sub_team_probabilities: dict[str, float]
     severity: int | None = Field(default=None, ge=0, le=3)
     severity_probabilities: dict[str, float] = {}
     vulnerable_p: float | None = None

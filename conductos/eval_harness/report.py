@@ -1,4 +1,9 @@
-"""Build the triage evaluation report: raw vs recalibrated calibration, safe thresholds, baseline."""
+"""Triage evaluation report under the pre-registered protocol (ADR-008).
+
+Calibrator and auto-routing threshold are fitted on the tune half only. Development runs report the
+tune half (with tune-only error examples). A final run also reveals the test half, scored with the
+tune-fitted calibrator and threshold; that is the published result.
+"""
 
 from __future__ import annotations
 
@@ -7,97 +12,114 @@ from datetime import datetime, timezone
 
 import numpy as np
 
-from conductos.data.taxonomy import GROUP_OF, group_probabilities
+from conductos.data.taxonomy import SUB_TEAMS, business_line_probabilities
 from conductos.eval_harness import metrics as m
 
 
-def _decision_block(p_raw: np.ndarray, correct: np.ndarray, target: float) -> tuple[dict, m.IsotonicCalibrator | None]:
-    """Accuracy, calibration (raw and cross-fitted recalibrated) and safe thresholds for one decision."""
-    n, k = len(p_raw), int(correct.sum())
-    p_cal = m.cross_fitted_calibration(p_raw, correct) if n >= 50 else p_raw
-    th_raw = m.pick_threshold(p_raw, correct, target)
-    th_cal = m.pick_threshold(p_cal, correct, target)
-    block = {
+def _side(p: np.ndarray, correct: np.ndarray, calibrator: m.IsotonicCalibrator | None) -> dict:
+    n, k = len(p), int(correct.sum())
+    p_cal = calibrator.predict(p) if calibrator else p
+    return {
         "n": n,
         "accuracy": {"value": k / n if n else None, "ci95": m.wilson_interval(k, n)},
         "calibration": {
-            "raw": {"ece": m.ece(p_raw, correct), "bins": m.reliability_bins(p_raw, correct)},
-            "recalibrated_cross_fitted": {"ece": m.ece(p_cal, correct), "bins": m.reliability_bins(p_cal, correct)},
-        },
-        "autonomy_threshold": {
-            "target_precision_lower_bound": target,
-            "raw": _pt(th_raw),
-            "recalibrated": _pt(th_cal),
-            "escalation_rate_at_recalibrated": (1 - th_cal.coverage) if th_cal else 1.0,
+            "raw": {"ece": m.ece(p, correct), "bins": m.reliability_bins(p, correct)},
+            "recalibrated": {"ece": m.ece(p_cal, correct), "bins": m.reliability_bins(p_cal, correct)},
         },
     }
-    return block, (m.IsotonicCalibrator().fit(p_raw, correct) if n >= 50 else None)
 
 
-def evaluate(records: list[dict], baseline: list[dict] | None = None, target: float = 0.95) -> dict:
-    """records: [{case_id, label, product, product_probabilities, severity, vulnerable_p,
-    regulatory_risk_p, risk_flags, injection_p, latency_ms, cost_usd, model, backend}]"""
-    rec = [r for r in records if r.get("product_probabilities")]
+def _level(p: np.ndarray, correct: np.ndarray, is_tune: np.ndarray, target: float, reveal_test: bool) -> tuple[dict, m.IsotonicCalibrator | None]:
+    p_t, c_t = p[is_tune], correct[is_tune]
+    cal = m.IsotonicCalibrator().fit(p_t, c_t) if len(p_t) >= 50 else None
+    tune = _side(p_t, c_t, None)
+    # within the tune half, report honest (out-of-fold) recalibration, not the in-sample fit
+    p_t_cf = m.cross_fitted_calibration(p_t, c_t) if len(p_t) >= 50 else p_t
+    tune["calibration"]["recalibrated"] = {"ece": m.ece(p_t_cf, c_t), "bins": m.reliability_bins(p_t_cf, c_t)}
+    th = m.pick_threshold(cal.predict(p_t) if cal else p_t, c_t, target)
+    tune["threshold"] = _pt(th)
+    block = {"target_precision_lower_bound": target, "tune": tune}
+    if reveal_test:
+        p_s, c_s = p[~is_tune], correct[~is_tune]
+        test = _side(p_s, c_s, cal)
+        if th is not None:
+            above = (cal.predict(p_s) if cal else p_s) >= th.threshold
+            k, n = int(c_s[above].sum()), int(above.sum())
+            lo = m.wilson_interval(k, n)[0] if n else 0.0
+            test["at_threshold"] = {"threshold": th.threshold, "coverage": n / len(p_s) if len(p_s) else 0.0, "n": n,
+                                    "precision": k / n if n else None, "precision_lower": lo,
+                                    "passes": bool(n and lo >= target)}
+        else:
+            test["at_threshold"] = None
+        block["test"] = test
+    return block, cal
+
+
+def evaluate(records: list[dict], baseline: list[dict] | None = None, target: float = 0.95,
+             reveal_test: bool = False) -> dict:
+    """records: [{case_id, label (sub-team), split, sub_team, sub_team_probabilities, narrative_head,
+    severity, vulnerable_p, regulatory_risk_p, risk_flags, injection_p, latency_ms, cost_usd, model, backend}]"""
+    rec = [r for r in records if r.get("sub_team_probabilities")]
+    is_tune = np.array([r["split"] == "tune" for r in rec])
     labels = [r["label"] for r in rec]
-    preds = [r["product"] for r in rec]
-    p_raw = np.array([max(r["product_probabilities"].values()) for r in rec])
+    preds = [r["sub_team"] for r in rec]
+    p = np.array([max(r["sub_team_probabilities"].values()) for r in rec])
     correct = np.array([a == b for a, b in zip(preds, labels)], dtype=float)
-    n = len(rec)
-    product, _ = _decision_block(p_raw, correct, target)
+    sub_team, calibrator = _level(p, correct, is_tune, target, reveal_test)
 
-    # ADR-007: routing decision on operational groups (sum of product probabilities)
-    gprobs = [group_probabilities(r["product_probabilities"]) for r in rec]
-    g_pred = [max(g, key=g.get) for g in gprobs]
-    g_correct = np.array([gp == GROUP_OF[y] for gp, y in zip(g_pred, labels)], dtype=float)
-    routing, routing_cal = _decision_block(np.array([max(g.values()) for g in gprobs]), g_correct, target)
+    lprobs = [business_line_probabilities(r["sub_team_probabilities"]) for r in rec]
+    l_pred = [max(x, key=x.get) for x in lprobs]
+    l_correct = np.array([lp == SUB_TEAMS[y][0] for lp, y in zip(l_pred, labels)], dtype=float)
+    business_line, _ = _level(np.array([max(x.values()) for x in lprobs]), l_correct, is_tune, target, reveal_test)
 
-    per_class = {}
-    for c in sorted(set(labels) | set(preds)):
-        tp = sum(1 for a, b in zip(preds, labels) if a == c and b == c)
-        fp = sum(1 for a, b in zip(preds, labels) if a == c and b != c)
-        fn = sum(1 for a, b in zip(preds, labels) if a != c and b == c)
-        per_class[c] = {
-            "support": tp + fn,
-            "precision": tp / (tp + fp) if tp + fp else None,
-            "recall": tp / (tp + fn) if tp + fn else None,
-        }
+    shown = ~is_tune if reveal_test else is_tune  # the split whose details are reported
+    idx = [i for i in range(len(rec)) if shown[i]]
+    per_team = {}
+    for t in SUB_TEAMS:
+        tp = sum(1 for i in idx if preds[i] == t and labels[i] == t)
+        fp = sum(1 for i in idx if preds[i] == t and labels[i] != t)
+        fn = sum(1 for i in idx if preds[i] != t and labels[i] == t)
+        per_team[t] = {"line": SUB_TEAMS[t][0], "support": tp + fn,
+                       "precision": tp / (tp + fp) if tp + fp else None, "recall": tp / (tp + fn) if tp + fn else None,
+                       "judged": tp + fn >= 30}
 
-    confusions = Counter((b, a) for a, b in zip(preds, labels) if a != b).most_common(8)
+    tune_idx = [i for i in range(len(rec)) if is_tune[i]]
+    confusions = Counter((labels[i], preds[i]) for i in tune_idx if labels[i] != preds[i]).most_common(10)
+    errors = [i for i in tune_idx if labels[i] != preds[i]]
+    errors.sort(key=lambda i: -p[i])  # most confident mistakes first
+    examples = [{"split": "tune", "label": labels[i], "predicted": preds[i], "p": round(float(p[i]), 3),
+                 "narrative_head": rec[i].get("narrative_head", "")} for i in errors[:25]]
+
+    srec = [rec[i] for i in idx]
 
     def flag_rate(key: str) -> float | None:
-        vals = [r[key] for r in rec if r.get(key) is not None]
+        vals = [r[key] for r in srec if r.get(key) is not None]
         return float(np.mean([v >= 0.5 for v in vals])) if vals else None
 
     lat = [r["latency_ms"] for r in rec if r.get("latency_ms") is not None]
     cost = [r["cost_usd"] for r in rec if r.get("cost_usd") is not None]
-
     result = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "model": rec[0]["model"] if rec else None,
-        "n": n,
-        "label_caveat": "CFPB product labels are chosen by consumers when filing; treated as a noisy proxy for truth.",
-        "accuracy": product["accuracy"],
-        "calibration": {
-            **product["calibration"],
-            "raw": {**product["calibration"]["raw"],
-                    "brier": m.brier_multiclass([r["product_probabilities"] for r in rec], labels)},
-        },
-        "autonomy_threshold": product["autonomy_threshold"],
-        "routing": routing,
-        "calibrator_for": "routing_group",
-        "calibrator": {"x": routing_cal.x_.tolist(), "y": routing_cal.y_.tolist()} if routing_cal else None,
-        "per_class": per_class,
-        "top_confusions": [{"label": l, "predicted": p, "count": c} for (l, p), c in confusions],
+        "evaluated_split": "test" if reveal_test else "tune",
+        "n_total": len(rec),
+        "label_caveat": "Answer key = written rules on CFPB product, sub-product and issue, which consumers choose when filing; a proxy, not perfect truth.",
+        "sub_team": sub_team,
+        "business_line": business_line,
+        "calibrator": {"fit_on": "tune", "x": calibrator.x_.tolist(), "y": calibrator.y_.tolist()} if calibrator else None,
+        "per_sub_team": per_team,
+        "tune_confusions": [{"label": l, "predicted": q, "count": c} for (l, q), c in confusions],
+        "tune_error_examples": examples,
         "signals": {
-            "severity_distribution": dict(Counter(str(r.get("severity")) for r in rec)),
+            "severity_distribution": dict(Counter(str(r.get("severity")) for r in srec)),
             "vulnerable_flag_rate": flag_rate("vulnerable_p"),
             "regulatory_risk_flag_rate": flag_rate("regulatory_risk_p"),
             "risk_flag_rates": {
-                f: float(np.mean([r["risk_flags"][f] >= 0.5 for r in rec if f in r.get("risk_flags", {})]))
-                for f in sorted({f for r in rec for f in r.get("risk_flags", {})})
+                f: float(np.mean([r["risk_flags"][f] >= 0.5 for r in srec if f in r.get("risk_flags", {})]))
+                for f in sorted({f for r in srec for f in r.get("risk_flags", {})})
             },
             "injection_flag_rate": flag_rate("injection_p"),
-            "note": "Severity and risk flags have no ground-truth labels yet; distributions only (see Red-Team #1).",
+            "note": "Severity and risk flags have no ground-truth labels yet; distributions only.",
         },
         "ops": {
             "latency_ms_p50": m.percentile(lat, 50),
@@ -107,9 +129,10 @@ def evaluate(records: list[dict], baseline: list[dict] | None = None, target: fl
         },
     }
     if baseline:
-        b = [x for x in baseline if x["case_id"] in {r["case_id"] for r in rec}]
-        answered = [x for x in b if x.get("product")]
-        bk = sum(1 for x in answered if x["product"] == x["label"])
+        keep = {rec[i]["case_id"] for i in idx}
+        b = [x for x in baseline if x["case_id"] in keep]
+        answered = [x for x in b if x.get("sub_team")]
+        bk = sum(1 for x in answered if x["sub_team"] == x["label"])
         result["baseline_rules"] = {
             "coverage": len(answered) / len(b) if b else None,
             "accuracy_all": bk / len(b) if b else None,
@@ -129,42 +152,47 @@ def to_markdown(r: dict) -> str:
     def pct(x):
         return "n/a" if x is None else f"{x*100:.1f}%"
 
-    acc = r["accuracy"]
-    th = r["autonomy_threshold"]
+    split = r["evaluated_split"]
     lines = [
         f"# Triage evaluation — {r['generated_at']}",
         "",
-        f"Model: `{r['model']}` · Cases: **{r['n']}**",
+        f"Model: `{r['model']}` · Complaints: **{r['n_total']}** · Reported split: **{split}**"
+        + ("" if split == "test" else " (development run; test half not revealed)"),
         "",
         f"> {r['label_caveat']}",
         "",
-        "## Headline",
-        f"- Product accuracy: **{pct(acc['value'])}** (95% CI {pct(acc['ci95'][0])}–{pct(acc['ci95'][1])})",
-        f"- ECE raw: **{r['calibration']['raw']['ece']:.3f}** → recalibrated (cross-fitted): **{r['calibration']['recalibrated_cross_fitted']['ece']:.3f}**",
     ]
-    for name in ("raw", "recalibrated"):
-        t = th[name]
-        if t:
-            lines.append(f"- Safe auto-threshold ({name}): p ≥ {t['threshold']:.3f} → coverage **{pct(t['coverage'])}**, precision {pct(t['precision'])} (lower bound {pct(t['precision_lower'])})")
-        else:
-            lines.append(f"- Safe auto-threshold ({name}): **none** reaches the {pct(th['target_precision_lower_bound'])} lower-bound target")
-    if "routing" in r:
-        rt = r["routing"]
-        lines.append(f"- **Routing group (ADR-007)** accuracy: **{pct(rt['accuracy']['value'])}** · ECE raw {rt['calibration']['raw']['ece']:.3f} → recalibrated {rt['calibration']['recalibrated_cross_fitted']['ece']:.3f}")
-        t = rt["autonomy_threshold"]["recalibrated"]
-        lines.append(f"- Routing safe auto-threshold (recalibrated): " + (f"p ≥ {t['threshold']:.3f} → coverage **{pct(t['coverage'])}**, precision lower bound {pct(t['precision_lower'])}" if t else "**none** reaches the target"))
-    if r["signals"].get("risk_flag_rates"):
-        lines.append("- Risk flag rates: " + ", ".join(f"{k} {pct(v)}" for k, v in r["signals"]["risk_flag_rates"].items()))
+    for level, title in (("sub_team", "Sub-team"), ("business_line", "Business line")):
+        b = r[level]
+        side = b[split]
+        cal = side["calibration"]
+        lines += [
+            f"## {title}",
+            f"- Accuracy ({split}): **{pct(side['accuracy']['value'])}** (95% CI {pct(side['accuracy']['ci95'][0])}–{pct(side['accuracy']['ci95'][1])})",
+            f"- Calibration error ({split}): raw {cal['raw']['ece']:.3f} → recalibrated {cal['recalibrated']['ece']:.3f}",
+        ]
+        th = b["tune"]["threshold"]
+        lines.append("- Threshold chosen on tune: " + (
+            f"p ≥ {th['threshold']:.3f} (tune coverage {pct(th['coverage'])}, lower bound {pct(th['precision_lower'])})"
+            if th else f"**none** reaches {pct(b['target_precision_lower_bound'])} on the tune half"))
+        if split == "test":
+            at = side["at_threshold"]
+            lines.append("- **Test at that threshold:** " + (
+                f"coverage {pct(at['coverage'])}, precision {pct(at['precision'])}, lower bound {pct(at['precision_lower'])} → "
+                + ("**passes**" if at["passes"] else "**does not pass**") if at else "no threshold to test"))
+        lines.append("")
     if "baseline_rules" in r:
-        b = r["baseline_rules"]
-        lines.append(f"- Keyword baseline: accuracy {pct(b['accuracy_all'])}, coverage {pct(b['coverage'])}")
+        lines.append(f"Keyword baseline ({split}): accuracy {pct(r['baseline_rules']['accuracy_all'])}")
     o = r["ops"]
     if o["latency_ms_p50"] is not None:
-        lines.append(f"- Latency p50/p95: {o['latency_ms_p50']:.0f} / {o['latency_ms_p95']:.0f} ms · cost/case ${o['cost_usd_per_case']:.6f}")
-    lines += ["", "## Reliability (raw)", "", "| bin | n | mean p | accuracy |", "|---|---|---|---|"]
-    for b in r["calibration"]["raw"]["bins"]:
-        if b["n"]:
-            lines.append(f"| {b['lo']:.1f}–{b['hi']:.1f} | {b['n']} | {b['mean_p']:.2f} | {b['accuracy']:.2f} |")
-    lines += ["", "## Top confusions (label → predicted)", ""]
-    lines += [f"- {c['label']} → {c['predicted']}: {c['count']}" for c in r["top_confusions"]]
+        lines.append(f"Latency p50/p95: {o['latency_ms_p50']:.0f} / {o['latency_ms_p95']:.0f} ms · cost/case ${o['cost_usd_per_case']:.6f}")
+    lines += ["", f"## Per sub-team ({split})", "", "| sub-team | line | support | precision | recall |", "|---|---|---|---|---|"]
+    for t, v in sorted(r["per_sub_team"].items(), key=lambda kv: -kv[1]["support"]):
+        note = "" if v["judged"] else " (too few to judge)"
+        lines.append(f"| {t}{note} | {v['line']} | {v['support']} | {pct(v['precision'])} | {pct(v['recall'])} |")
+    lines += ["", "## Tune-half confusions (label → predicted)", ""]
+    lines += [f"- {c['label']} → {c['predicted']}: {c['count']}" for c in r["tune_confusions"]]
+    lines += ["", "## Tune-half error examples (most confident first)", ""]
+    for e in r["tune_error_examples"]:
+        lines.append(f"- **{e['label']} → {e['predicted']}** (p {e['p']}): {e['narrative_head'][:300]}")
     return "\n".join(lines) + "\n"
