@@ -128,7 +128,7 @@
 {"complaint_id": "22358395", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22364281", "split": "tune", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22365331", "split": "tune", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "22369694", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22369694", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "cb_account_servicing", "relabeled_on": "2026-10-09"}
 {"complaint_id": "22412683", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22413154", "split": "tune", "sub_team": "hl_servicing_escrow", "unsure": true, "note": "Considered Home Lending: Loss mitigation & default", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22415959", "split": "test", "sub_team": "cb_payments_transfers", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -186,7 +186,7 @@
 {"complaint_id": "22973775", "split": "tune", "sub_team": "ca_auto_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22983563", "split": "tune", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22993570", "split": "tune", "sub_team": "cb_opening_onboarding", "unsure": true, "note": "Considered Consumer Banking: Account servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "22994952", "split": "test", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22994952", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "cb_opening_onboarding", "relabeled_on": "2026-10-09"}
 {"complaint_id": "23000269", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23005837", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23030874", "split": "tune", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -219,7 +219,7 @@
 {"complaint_id": "23309761", "split": "tune", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23316500", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23337228", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "23350815", "split": "tune", "sub_team": "cb_opening_onboarding", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23350815", "split": "tune", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "cb_opening_onboarding", "relabeled_on": "2026-10-09"}
 {"complaint_id": "23352420", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09", "rereviewed_on": "2026-10-09"}
 {"complaint_id": "23429831", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Consumer Banking: Fees & overdraft", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23460276", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -258,7 +258,7 @@
 {"complaint_id": "23885621", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23894782", "split": "tune", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Auto servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23899893", "split": "test", "sub_team": "cb_account_servicing", "unsure": true, "note": "Considered Consumer Banking: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "23904670", "split": "tune", "sub_team": "ca_card_applications", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23904670", "split": "tune", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "ca_card_applications", "relabeled_on": "2026-10-09"}
 {"complaint_id": "23909594", "split": "tune", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23909610", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23917007", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -331,7 +331,7 @@
 {"complaint_id": "21115912", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "21150253", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "21151983", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "21159696", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21159696", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "ca_card_personal_loan_servicing", "relabeled_on": "2026-10-09"}
 {"complaint_id": "21161156", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": true, "note": "Considered Shared: Account closures & restrictions", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09", "rereviewed_on": "2026-10-09"}
 {"complaint_id": "21164040", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "21167198", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -383,7 +383,7 @@
 {"complaint_id": "21611429", "split": "test", "sub_team": "ca_auto_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "21612697", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "21615884", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "21633070", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card applications", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "21633070", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card applications", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "sh_credit_bureau_disputes", "relabeled_on": "2026-10-09"}
 {"complaint_id": "21636899", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "21648678", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "21665541", "split": "test", "sub_team": "hl_servicing_escrow", "unsure": true, "note": "Considered Home Lending: Mortgage origination", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -468,7 +468,7 @@
 {"complaint_id": "22358829", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09", "rereviewed_on": "2026-10-09"}
 {"complaint_id": "22366289", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22371591", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "22380306", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22380306", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "ca_card_applications", "relabeled_on": "2026-10-09"}
 {"complaint_id": "22382030", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22382051", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22382910", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -506,7 +506,7 @@
 {"complaint_id": "22771209", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22776023", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Auto servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22783197", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": true, "note": "Considered Card Services & Auto: Collections & recoveries", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09", "rereviewed_on": "2026-10-09"}
-{"complaint_id": "22792589", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "22792589", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "ca_card_applications", "relabeled_on": "2026-10-09"}
 {"complaint_id": "22803152", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22810186", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "22811419", "split": "test", "sub_team": "sh_credit_bureau_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
@@ -577,7 +577,7 @@
 {"complaint_id": "23473721", "split": "test", "sub_team": "cb_account_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23478699", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23478998", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "23553327", "split": "test", "sub_team": "ca_card_applications", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23553327", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": true, "note": "Considered Shared: Credit bureau reporting disputes", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "ca_card_applications", "relabeled_on": "2026-10-09"}
 {"complaint_id": "23563829", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23573249", "split": "test", "sub_team": "ca_card_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23586258", "split": "test", "sub_team": "cb_fraud_disputes", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09", "rereviewed_on": "2026-10-09"}
@@ -585,7 +585,7 @@
 {"complaint_id": "23657947", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23663443", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23678262", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
-{"complaint_id": "23680984", "split": "test", "sub_team": "ca_card_personal_loan_servicing", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
+{"complaint_id": "23680984", "split": "test", "sub_team": "sh_closures_restrictions", "unsure": false, "note": "", "labeler": "Claude (applying labeler's Amendment 2 rules)", "labeled_on": "2026-10-09", "previous_sub_team": "ca_card_personal_loan_servicing", "relabeled_on": "2026-10-09"}
 {"complaint_id": "23686569", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": true, "note": "Considered Card Services & Auto: Card & personal loan servicing", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23689979", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
 {"complaint_id": "23693744", "split": "test", "sub_team": "ca_collections_recoveries", "unsure": false, "note": "", "labeler": "Tanmay Mohanta", "labeled_on": "2026-10-09"}
