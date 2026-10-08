@@ -227,3 +227,33 @@ def test_bank_sample_filters_companies_across_exports_and_splits(tmp_path):
     assert sum(c.split == "tune" for c in out) == 10 and sum(c.split == "test" for c in out) == 10
     with pytest.raises(RuntimeError, match="Only 30"):
         sample_archive(zips, n=40, seed=3, companies={"BIG BANK, N.A."})
+
+
+def test_every_golden_complaint_maps_to_exactly_one_sub_team():
+    import json
+    from pathlib import Path
+    from conductos.data.taxonomy import SUB_TEAMS, sub_team_for
+
+    rows = [json.loads(x) for x in Path("data/golden/cfpb_sample.jsonl").read_text().splitlines()]
+    assert len(rows) == 2000
+    teams = [sub_team_for(r["cfpb_product"], r["cfpb_sub_product"], r["cfpb_issue"]) for r in rows]
+    assert all(t in SUB_TEAMS for t in teams)
+    assert {SUB_TEAMS[t][0] for t in SUB_TEAMS} == {"Consumer Banking", "Card Services & Auto", "Home Lending", "Shared"}
+    assert len(SUB_TEAMS) == 15
+
+
+def test_sub_team_rules():
+    import pytest
+    from conductos.data.taxonomy import sub_team_for
+
+    assert sub_team_for("Credit card", "General-purpose credit card or charge card",
+                        "Problem with a purchase shown on your statement") == "ca_card_disputes"
+    assert sub_team_for("Credit card", "Store credit card", "Incorrect information on your report") == "sh_credit_bureau_disputes"
+    assert sub_team_for("Debt collection", "I do not know", "Attempts to collect debt not owed") == "ca_collections_recoveries"
+    assert sub_team_for("Debt collection", "Mortgage debt", "Written notification about debt") == "hl_loss_mitigation"
+    assert sub_team_for("Payday loan, title loan, personal loan, or advance loan", "Installment loan",
+                        "Getting the loan") == "ca_card_personal_loan_servicing"
+    assert sub_team_for("Checking or savings account", "Checking account", "Closing an account") == "cb_closures_restrictions"
+    assert sub_team_for("Mortgage", "FHA mortgage", "Struggling to pay mortgage") == "hl_loss_mitigation"
+    with pytest.raises(ValueError):
+        sub_team_for("Some new product", None, None)
