@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-10-08T19:44:05+00:00",
+  "model": "jev-1.13.0",
+  "n": 500,
+  "label_caveat": "CFPB product labels are chosen by consumers when filing; treated as a noisy proxy for truth.",
+  "accuracy": {
+    "value": 0.748,
+    "ci95": [
+      0.7081514126701541,
+      0.7840667765385178
+    ]
+  },
+  "calibration": {
+    "raw": {
+      "ece": 0.17191999999999996,
+      "brier": 0.4131432,
+      "bins": [
+        {
+          "lo": 0.0,
+          "hi": 0.1,
+          "n": 0,
+          "mean_p": null,
+          "accuracy": null
+        },
+        {
+          "lo": 0.1,
+          "hi": 0.2,
+          "n": 0,
+          "mean_p": null,
+          "accuracy": null
+        },
+        {
+          "lo": 0.2,
+          "hi": 0.3,
+          "n": 0,
+          "mean_p": null,
+          "accuracy": null
+        },
+        {
+          "lo": 0.3,
+          "hi": 0.4,
+          "n": 3,
+          "mean_p": 0.3833333333333333,
+          "accuracy": 0.0
+        },
+        {
+          "lo": 0.4,
+          "hi": 0.5,
+          "n": 3,
+          "mean_p": 0.45,
+          "accuracy": 0.0
+        },
+        {
+          "lo": 0.5,
+          "hi": 0.6,
+          "n": 24,
+          "mean_p": 0.5525,
+          "accuracy": 0.5
+        },
+        {
+          "lo": 0.6,
+          "hi": 0.7,
+          "n": 24,
+          "mean_p": 0.6541666666666667,
+          "accuracy": 0.4166666666666667
+        },
+        {
+          "lo": 0.7,
+          "hi": 0.8,
+          "n": 30,
+          "mean_p": 0.752,
+          "accuracy": 0.5333333333333333
+        },
+        {
+          "lo": 0.8,
+          "hi": 0.9,
+          "n": 38,
+          "mean_p": 0.8460526315789473,
+          "accuracy": 0.631578947368421
+        },
+        {
+          "lo": 0.9,
+          "hi": 1.0,
+          "n": 378,
+          "mean_p": 0.9888624338624338,
+          "accuracy": 0.8253968253968254
+        }
+      ]
+    },
+    "recalibrated_cross_fitted": {
+      "ece": 0.09272755873921794,
+      "bins": [
+        {
+          "lo": 0.0,
+          "hi": 0.1,
+          "n": 6,
+          "mean_p": 0.006060606060606064,
+          "accuracy": 0.0
+        },
+        {
+          "lo": 0.1,
+          "hi": 0.2,
+          "n": 6,
+          "mean_p": 0.15475653494103156,
+          "accuracy": 0.5
+        },
+        {
+          "lo": 0.2,
+          "hi": 0.3,
+          "n": 8,
+          "mean_p": 0.26487655693008033,
+          "accuracy": 0.625
+        },
+        {
+          "lo": 0.3,
+          "hi": 0.4,
+          "n": 2,
+          "mean_p": 0.3376819791461737,
+          "accuracy": 0.5
+        },
+        {
+          "lo": 0.4,
+          "hi": 0.5,
+          "n": 33,
+          "mean_p": 0.4605853698827717,
+          "accuracy": 0.5757575757575758
+        },
+        {
+          "lo": 0.5,
+          "hi": 0.6,
+          "n": 82,
+          "mean_p": 0.5601481995569604,
+          "accuracy": 0.573170731707317
+        },
+        {
+          "lo": 0.6,
+          "hi": 0.7,
+          "n": 59,
+          "mean_p": 0.640153561258948,
+          "accuracy": 0.4915254237288136
+        },
+        {
+          "lo": 0.7,
+          "hi": 0.8,
+          "n": 25,
+          "mean_p": 0.7476570341807153,
+          "accuracy": 0.76
+        },
+        {
+          "lo": 0.8,
+          "hi": 0.9,
+          "n": 5,
+          "mean_p": 0.8208333333333332,
+          "accuracy": 0.4
+        },
+        {
+          "lo": 0.9,
+          "hi": 1.0,
+          "n": 274,
+          "mean_p": 1.0,
+          "accuracy": 0.9087591240875912
+        }
+      ]
+    }
+  },
+  "autonomy_threshold": {
+    "target_precision_lower_bound": 0.95,
+    "raw": null,
+    "recalibrated": null,
+    "escalation_rate_at_recalibrated": 1.0
+  },
+  "per_class": {
+    "bank_account": {
+      "support": 107,
+      "precision": 0.8144329896907216,
+      "recall": 0.7383177570093458
+    },
+    "credit_card": {
+      "support": 67,
+      "precision": 0.7222222222222222,
+      "recall": 0.7761194029850746
+    },
+    "credit_reporting": {
+      "support": 21,
+      "precision": 0.27692307692307694,
+      "recall": 0.8571428571428571
+    },
+    "debt_collection": {
+      "support": 133,
+      "precision": 0.8958333333333334,
+      "recall": 0.6466165413533834
+    },
+    "debt_management": {
+      "support": 6,
+      "precision": 1.0,
+      "recall": 0.3333333333333333
+    },
+    "money_transfer": {
+      "support": 40,
+      "precision": 0.7317073170731707,
+      "recall": 0.75
+    },
+    "mortgage": {
+      "support": 33,
+      "precision": 0.9393939393939394,
+      "recall": 0.9393939393939394
+    },
+    "personal_loan": {
+      "support": 30,
+      "precision": 0.6666666666666666,
+      "recall": 0.7333333333333333
+    },
+    "prepaid_card": {
+      "support": 11,
+      "precision": 0.75,
+      "recall": 0.5454545454545454
+    },
+    "student_loan": {
+      "support": 21,
+      "precision": 0.9545454545454546,
+      "recall": 1.0
+    },
+    "vehicle_loan": {
+      "support": 31,
+      "precision": 0.8709677419354839,
+      "recall": 0.8709677419354839
+    }
+  },
+  "top_confusions": [
+    {
+      "label": "debt_collection",
+      "predicted": "credit_reporting",
+      "count": 39
+    },
+    {
+      "label": "bank_account",
+      "predicted": "credit_card",
+      "count": 11
+    },
+    {
+      "label": "bank_account",
+      "predicted": "money_transfer",
+      "count": 10
+    },
+    {
+      "label": "money_transfer",
+      "predicted": "bank_account",
+      "count": 6
+    },
+    {
+      "label": "credit_card",
+      "predicted": "bank_account",
+      "count": 5
+    },
+    {
+      "label": "personal_loan",
+      "predicted": "debt_collection",
+      "count": 4
+    },
+    {
+      "label": "credit_card",
+      "predicted": "personal_loan",
+      "count": 4
+    },
+    {
+      "label": "debt_collection",
+      "predicted": "credit_card",
+      "count": 3
+    }
+  ],
+  "signals": {
+    "severity_distribution": {
+      "3": 7,
+      "2": 117,
+      "1": 325,
+      "0": 51
+    },
+    "vulnerable_flag_rate": 0.186,
+    "regulatory_risk_flag_rate": 0.94,
+    "injection_flag_rate": 0.0,
+    "note": "Severity and risk flags have no ground-truth labels yet; distributions only (see Red-Team #1)."
+  },
+  "ops": {
+    "latency_ms_p50": 133.06878099999153,
+    "latency_ms_p95": 180.1869317499921,
+    "cost_usd_total": 0.023975658,
+    "cost_usd_per_case": 4.795131600000001e-05
+  },
+  "baseline_rules": {
+    "coverage": 0.832,
+    "accuracy_all": 0.55,
+    "accuracy_when_answered": 0.6610576923076923
+  }
+}
