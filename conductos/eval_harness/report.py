@@ -7,24 +7,49 @@ from datetime import datetime, timezone
 
 import numpy as np
 
+from conductos.data.taxonomy import GROUP_OF, group_probabilities
 from conductos.eval_harness import metrics as m
+
+
+def _decision_block(p_raw: np.ndarray, correct: np.ndarray, target: float) -> tuple[dict, m.IsotonicCalibrator | None]:
+    """Accuracy, calibration (raw and cross-fitted recalibrated) and safe thresholds for one decision."""
+    n, k = len(p_raw), int(correct.sum())
+    p_cal = m.cross_fitted_calibration(p_raw, correct) if n >= 50 else p_raw
+    th_raw = m.pick_threshold(p_raw, correct, target)
+    th_cal = m.pick_threshold(p_cal, correct, target)
+    block = {
+        "n": n,
+        "accuracy": {"value": k / n if n else None, "ci95": m.wilson_interval(k, n)},
+        "calibration": {
+            "raw": {"ece": m.ece(p_raw, correct), "bins": m.reliability_bins(p_raw, correct)},
+            "recalibrated_cross_fitted": {"ece": m.ece(p_cal, correct), "bins": m.reliability_bins(p_cal, correct)},
+        },
+        "autonomy_threshold": {
+            "target_precision_lower_bound": target,
+            "raw": _pt(th_raw),
+            "recalibrated": _pt(th_cal),
+            "escalation_rate_at_recalibrated": (1 - th_cal.coverage) if th_cal else 1.0,
+        },
+    }
+    return block, (m.IsotonicCalibrator().fit(p_raw, correct) if n >= 50 else None)
 
 
 def evaluate(records: list[dict], baseline: list[dict] | None = None, target: float = 0.95) -> dict:
     """records: [{case_id, label, product, product_probabilities, severity, vulnerable_p,
-    regulatory_risk_p, injection_p, latency_ms, cost_usd, model, backend}]"""
+    regulatory_risk_p, risk_flags, injection_p, latency_ms, cost_usd, model, backend}]"""
     rec = [r for r in records if r.get("product_probabilities")]
     labels = [r["label"] for r in rec]
     preds = [r["product"] for r in rec]
     p_raw = np.array([max(r["product_probabilities"].values()) for r in rec])
     correct = np.array([a == b for a, b in zip(preds, labels)], dtype=float)
     n = len(rec)
-    k = int(correct.sum())
+    product, _ = _decision_block(p_raw, correct, target)
 
-    p_cal = m.cross_fitted_calibration(p_raw, correct) if n >= 50 else p_raw
-    th_raw = m.pick_threshold(p_raw, correct, target)
-    th_cal = m.pick_threshold(p_cal, correct, target)
-    final_cal = m.IsotonicCalibrator().fit(p_raw, correct) if n >= 50 else None
+    # ADR-007: routing decision on operational groups (sum of product probabilities)
+    gprobs = [group_probabilities(r["product_probabilities"]) for r in rec]
+    g_pred = [max(g, key=g.get) for g in gprobs]
+    g_correct = np.array([gp == GROUP_OF[y] for gp, y in zip(g_pred, labels)], dtype=float)
+    routing, routing_cal = _decision_block(np.array([max(g.values()) for g in gprobs]), g_correct, target)
 
     per_class = {}
     for c in sorted(set(labels) | set(preds)):
@@ -51,31 +76,26 @@ def evaluate(records: list[dict], baseline: list[dict] | None = None, target: fl
         "model": rec[0]["model"] if rec else None,
         "n": n,
         "label_caveat": "CFPB product labels are chosen by consumers when filing; treated as a noisy proxy for truth.",
-        "accuracy": {"value": k / n if n else None, "ci95": m.wilson_interval(k, n)},
+        "accuracy": product["accuracy"],
         "calibration": {
-            "raw": {
-                "ece": m.ece(p_raw, correct),
-                "brier": m.brier_multiclass([r["product_probabilities"] for r in rec], labels),
-                "bins": m.reliability_bins(p_raw, correct),
-            },
-            "recalibrated_cross_fitted": {
-                "ece": m.ece(p_cal, correct),
-                "bins": m.reliability_bins(p_cal, correct),
-            },
+            **product["calibration"],
+            "raw": {**product["calibration"]["raw"],
+                    "brier": m.brier_multiclass([r["product_probabilities"] for r in rec], labels)},
         },
-        "autonomy_threshold": {
-            "target_precision_lower_bound": target,
-            "raw": _pt(th_raw),
-            "recalibrated": _pt(th_cal),
-            "escalation_rate_at_recalibrated": (1 - th_cal.coverage) if th_cal else 1.0,
-        },
-        "calibrator": {"x": final_cal.x_.tolist(), "y": final_cal.y_.tolist()} if final_cal else None,
+        "autonomy_threshold": product["autonomy_threshold"],
+        "routing": routing,
+        "calibrator_for": "routing_group",
+        "calibrator": {"x": routing_cal.x_.tolist(), "y": routing_cal.y_.tolist()} if routing_cal else None,
         "per_class": per_class,
         "top_confusions": [{"label": l, "predicted": p, "count": c} for (l, p), c in confusions],
         "signals": {
             "severity_distribution": dict(Counter(str(r.get("severity")) for r in rec)),
             "vulnerable_flag_rate": flag_rate("vulnerable_p"),
             "regulatory_risk_flag_rate": flag_rate("regulatory_risk_p"),
+            "risk_flag_rates": {
+                f: float(np.mean([r["risk_flags"][f] >= 0.5 for r in rec if f in r.get("risk_flags", {})]))
+                for f in sorted({f for r in rec for f in r.get("risk_flags", {})})
+            },
             "injection_flag_rate": flag_rate("injection_p"),
             "note": "Severity and risk flags have no ground-truth labels yet; distributions only (see Red-Team #1).",
         },
@@ -128,6 +148,13 @@ def to_markdown(r: dict) -> str:
             lines.append(f"- Safe auto-threshold ({name}): p ≥ {t['threshold']:.3f} → coverage **{pct(t['coverage'])}**, precision {pct(t['precision'])} (lower bound {pct(t['precision_lower'])})")
         else:
             lines.append(f"- Safe auto-threshold ({name}): **none** reaches the {pct(th['target_precision_lower_bound'])} lower-bound target")
+    if "routing" in r:
+        rt = r["routing"]
+        lines.append(f"- **Routing group (ADR-007)** accuracy: **{pct(rt['accuracy']['value'])}** · ECE raw {rt['calibration']['raw']['ece']:.3f} → recalibrated {rt['calibration']['recalibrated_cross_fitted']['ece']:.3f}")
+        t = rt["autonomy_threshold"]["recalibrated"]
+        lines.append(f"- Routing safe auto-threshold (recalibrated): " + (f"p ≥ {t['threshold']:.3f} → coverage **{pct(t['coverage'])}**, precision lower bound {pct(t['precision_lower'])}" if t else "**none** reaches the target"))
+    if r["signals"].get("risk_flag_rates"):
+        lines.append("- Risk flag rates: " + ", ".join(f"{k} {pct(v)}" for k, v in r["signals"]["risk_flag_rates"].items()))
     if "baseline_rules" in r:
         b = r["baseline_rules"]
         lines.append(f"- Keyword baseline: accuracy {pct(b['accuracy_all'])}, coverage {pct(b['coverage'])}")

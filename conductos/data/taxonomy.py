@@ -59,3 +59,23 @@ def map_product(cfpb_product: str | None, cfpb_sub_product: str | None = None) -
         if "prepaid" in cfpb_sub_product.lower() or "gift" in cfpb_sub_product.lower():
             return "prepaid_card"
     return CFPB_PRODUCT_MAP.get(cfpb_product.strip())
+
+
+# Operational routing groups (ADR-007). Products that consumers often confuse share a group,
+# so routing is judged on the decision an operations team actually acts on.
+GROUPS: dict[str, tuple[str, ...]] = {
+    "collections_credit": ("debt_collection", "credit_reporting", "debt_management"),
+    "deposits_payments": ("bank_account", "money_transfer", "prepaid_card"),
+    "cards": ("credit_card",),
+    "home_lending": ("mortgage",),
+    "consumer_lending": ("vehicle_loan", "student_loan", "personal_loan"),
+}
+GROUP_OF: dict[str, str] = {p: g for g, ps in GROUPS.items() for p in ps}
+
+
+def group_probabilities(product_probabilities: dict[str, float]) -> dict[str, float]:
+    """Sum product probabilities into routing-group probabilities."""
+    out = {g: 0.0 for g in GROUPS}
+    for p, v in product_probabilities.items():
+        out[GROUP_OF[p]] += v
+    return out

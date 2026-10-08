@@ -33,10 +33,24 @@ TRIAGE_QUESTIONS = {
             "financial hardship, domestic abuse, or limited English)?"
         )
     ),
-    "regulatory_risk": NoulQ(
+    # ADR-007: one broad "regulatory risk" question fired on 94% of complaints, so it is split
+    # into narrow atomic questions. Any one firing forces human review.
+    "alleged_discrimination": NoulQ(
         instructions=(
-            "Does the complaint allege conduct that could be unfair, deceptive or abusive, "
-            "discriminatory, or a breach of consumer protection law, beyond a routine service issue?"
+            "Does the consumer allege they were treated differently because of race, sex, age, "
+            "religion, national origin, disability, marital status or receipt of public assistance?"
+        )
+    ),
+    "alleged_deception": NoulQ(
+        instructions=(
+            "Does the consumer allege they were misled: terms, fees, rates or conditions that were "
+            "hidden, misrepresented, or different from what they were told?"
+        )
+    ),
+    "threats_or_harassment": NoulQ(
+        instructions=(
+            "Does the consumer describe threats, abusive language, harassment, or repeated contact "
+            "meant to pressure them (for example by a collector or lender)?"
         )
     ),
     "prompt_injection": NoulQ(
@@ -47,6 +61,8 @@ TRIAGE_QUESTIONS = {
         )
     ),
 }
+
+RISK_FLAGS = ("alleged_discrimination", "alleged_deception", "threats_or_harassment")
 
 # Keyword baseline for the rules backend (benchmark + fallback). Deliberately simple.
 RULES_KEYWORDS = {
@@ -69,6 +85,7 @@ RULES_KEYWORDS = {
 def triage(case: CleanCase, gateway: Gateway) -> TriageDecision:
     d = gateway.decide(case.text, TRIAGE_QUESTIONS, workflow="m1-triage")
     a = d.result.answers
+    flags = {k: a[k].value for k in RISK_FLAGS if a[k].value is not None}  # rules backend answers none
     return TriageDecision(
         case_id=case.case_id,
         trace_id=d.trace_id,
@@ -79,7 +96,8 @@ def triage(case: CleanCase, gateway: Gateway) -> TriageDecision:
         severity=a["severity"].value,
         severity_probabilities=a["severity"].probabilities,
         vulnerable_p=a["vulnerable_customer"].value,
-        regulatory_risk_p=a["regulatory_risk"].value,
+        risk_flags=flags,
+        regulatory_risk_p=max(flags.values()) if flags else None,
         injection_p=a["prompt_injection"].value,
         latency_ms=d.latency_ms,
         cost_usd=d.result.cost_usd,

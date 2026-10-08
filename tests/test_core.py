@@ -75,7 +75,7 @@ def test_state_machine_blocks_illegal_transition():
 
 def _t(**kw):
     base = dict(case_id="1", trace_id="t", model="m", backend="jev", product="mortgage",
-                product_probabilities={"mortgage": 0.97, "bank_account": 0.03}, severity=1,
+                product_probabilities={"mortgage": 0.97, "credit_card": 0.03}, severity=1,
                 vulnerable_p=0.1, regulatory_risk_p=0.1, injection_p=0.0, latency_ms=1, cost_usd=0)
     base.update(kw)
     return TriageDecision(**base)
@@ -87,11 +87,14 @@ def test_supervisor_routes():
     assert route(_t(), policy).route == Route.REVIEW
     assert route(_t(injection_p=0.9), policy).route == Route.QUARANTINE
     assert "vulnerable-customer signal" in route(_t(vulnerable_p=0.8), policy).reasons
-    policy["thresholds"]["product"] = {"auto": 0.9, "review": 0.6}
+    policy["thresholds"]["routing_group"] = {"auto": 0.9, "review": 0.6}
     ident = lambda p: p  # noqa: E731
     assert route(_t(), policy, ident).route == Route.AUTO
-    assert route(_t(product_probabilities={"mortgage": 0.7, "x": 0.3}), policy, ident).route == Route.REVIEW
-    assert route(_t(product_probabilities={"mortgage": 0.5, "x": 0.5}), policy, ident).route == Route.INVESTIGATE
+    assert route(_t(product_probabilities={"mortgage": 0.7, "credit_card": 0.3}), policy, ident).route == Route.REVIEW
+    assert route(_t(product_probabilities={"mortgage": 0.5, "credit_card": 0.5}), policy, ident).route == Route.INVESTIGATE
+    # ADR-007: a collections vs credit-reporting split is one confident routing decision
+    split = route(_t(product_probabilities={"debt_collection": 0.5, "credit_reporting": 0.5}), policy, ident)
+    assert split.route == Route.AUTO and split.calibrated_routing_p == 1.0
     # mandatory review beats high confidence
     assert route(_t(severity=3), policy, ident).route == Route.REVIEW
 
@@ -136,6 +139,9 @@ def test_evaluate_end_to_end_with_simulated_model():
     r = evaluate(records)
     assert r["n"] == 300
     assert r["calibration"]["recalibrated_cross_fitted"]["ece"] < r["calibration"]["raw"]["ece"]
+    # ADR-007: routing-level block (groups) is reported alongside product level
+    assert r["routing"]["n"] == 300 and r["routing"]["accuracy"]["value"] >= r["accuracy"]["value"]
+    assert r["calibrator_for"] == "routing_group"
     assert "Triage evaluation" in to_markdown(r)
 
 
@@ -160,3 +166,21 @@ def test_archive_sampling_from_csv_export(tmp_path):
     assert len(a) == 10 and [c.complaint_id for c in a] == [c.complaint_id for c in b]  # reproducible
     assert all(c.narrative and c.product_label == "mortgage" for c in a)
     assert stats["rows"] == 50 and stats["usable"] < 50
+
+
+def test_every_product_in_exactly_one_group():
+    from conductos.data.taxonomy import GROUPS, PRODUCTS, group_probabilities
+
+    members = [p for ps in GROUPS.values() for p in ps]
+    assert sorted(members) == sorted(PRODUCTS)
+    g = group_probabilities({"debt_collection": 0.5, "credit_reporting": 0.4, "mortgage": 0.1})
+    assert abs(g["collections_credit"] - 0.9) < 1e-9 and abs(sum(g.values()) - 1) < 1e-9
+
+
+def test_triage_with_rules_backend_handles_unanswered_flags():
+    from conductos.ops_pod.contracts import CleanCase
+    from conductos.ops_pod.triage import triage
+
+    gw = Gateway(chain=[RulesBackend(RULES_KEYWORDS)])
+    t = triage(CleanCase(case_id="1", text="My mortgage escrow is wrong", received="2026-07-01"), gw)
+    assert t.product == "mortgage" and t.regulatory_risk_p is None and t.risk_flags == {}

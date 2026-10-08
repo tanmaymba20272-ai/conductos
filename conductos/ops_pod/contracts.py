@@ -29,7 +29,8 @@ class TriageDecision(_Contract):
     severity: int | None = Field(default=None, ge=0, le=3)
     severity_probabilities: dict[str, float] = {}
     vulnerable_p: float | None = None
-    regulatory_risk_p: float | None = None
+    regulatory_risk_p: float | None = None  # max of risk_flags
+    risk_flags: dict[str, float] = {}
     injection_p: float | None = None
     latency_ms: float
     cost_usd: float
@@ -46,5 +47,5 @@ class RoutingDecision(_Contract):
     case_id: str
     route: Route
     reasons: list[str]
-    calibrated_product_p: float | None
+    calibrated_routing_p: float | None
     autonomy_level: str
