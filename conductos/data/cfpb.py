@@ -220,7 +220,12 @@ def sample_archive(zip_path: Path, n: int = 1000, seed: int = 2026) -> tuple[lis
 
 def download(url: str, dest: Path, timeout: int = 600) -> Path:
     dest.parent.mkdir(parents=True, exist_ok=True)
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (conductos research)"})
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36",
+        "Accept": "application/zip,application/octet-stream,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": ARCHIVE_PAGE,
+    })
     with urllib.request.urlopen(req, timeout=timeout) as resp, dest.open("wb") as f:
         while chunk := resp.read(1 << 20):
             f.write(chunk)
