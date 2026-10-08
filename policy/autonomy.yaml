@@ -1,0 +1,28 @@
+# Autonomy & Guardrail Policy (machine-readable). Source of truth: Notion "Autonomy & Guardrail Policy".
+# Changes require policy-owner approval and a Decision Log entry.
+version: "0.1"
+owner: conduct-risk-lead
+
+levels: [L0_suggest, L1_act_with_approval, L2_act_and_notify, L3_autonomous]
+
+actions:
+  tag_product:          { reversible: true,    current: L1_act_with_approval, ceiling: L3_autonomous }
+  route_to_queue:       { reversible: true,    current: L1_act_with_approval, ceiling: L3_autonomous }
+  set_priority:         { reversible: true,    current: L1_act_with_approval, ceiling: L2_act_and_notify }
+  send_acknowledgment:  { reversible: partial, current: L1_act_with_approval, ceiling: L2_act_and_notify }
+  send_response:        { reversible: false,   current: L0_suggest,           ceiling: L1_act_with_approval }
+  offer_remediation:    { reversible: false,   current: L0_suggest,           ceiling: L1_act_with_approval, two_person_rule: true }
+  escalate_compliance:  { reversible: true,    current: L2_act_and_notify,    ceiling: L3_autonomous }
+
+# Thresholds apply to CALIBRATED probabilities produced by the eval harness, never raw vendor scores.
+# null = not yet set: everything routes to review until the harness publishes evidence.
+thresholds:
+  product:
+    auto: null
+    review: null
+
+mandatory_review:
+  vulnerable_customer_p: 0.5
+  regulatory_risk_p: 0.5
+  severity_at_least: 3        # critical
+  injection_p_quarantine: 0.5

@@ -1,0 +1,39 @@
+name: harness
+
+# Runs the walking skeleton against live CFPB data and Jev, then commits the results.
+# The portfolio site reads results/public.json from this repo, so it always shows the latest run.
+# Requires the repository secret TYPESAFE_API_KEY.
+
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: "Number of complaints"
+        default: "500"
+  schedule:
+    - cron: "17 2 * * 1" # weekly, Monday 02:17 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Walking skeleton
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: conductos skeleton --refetch --n "${{ github.event.inputs.n || 500 }}" --publish results/public.json
+      - name: Commit results
+        run: |
+          git config user.name "conductos-harness"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/latest.md results/public.json
+          git commit -m "harness: update evaluation results" || echo "no changes"
+          git push
