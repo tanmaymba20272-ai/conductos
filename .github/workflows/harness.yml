@@ -15,9 +15,8 @@ on:
         description: "Final run: reveal the test half and publish (ADR-008). Leave false while tuning."
         type: boolean
         default: false
-  # Weekly schedule paused while sub-team routing is tuned (2026-10-09). Re-enable after the final test run:
-  # schedule:
-  #   - cron: "17 2 * * 1" # weekly, Monday 02:17 UTC
+  schedule:
+    - cron: "17 2 * * 1" # weekly, Monday 02:17 UTC
 
 permissions:
   contents: write
