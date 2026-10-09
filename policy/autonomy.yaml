@@ -16,6 +16,8 @@ actions:
 
 # Thresholds apply to CALIBRATED probabilities produced by the eval harness, never raw vendor scores.
 # null = not yet set: everything routes to review until the harness publishes evidence.
+# ADR-009: the 2026-10-09 held-out test did not meet the 95% bar, so routing runs in assist mode
+# (route_to_queue at L1): Jev suggests a team and a person confirms or corrects every case.
 thresholds:
   sub_team:   # ADR-008: autonomy keys on the sub-team; set by the policy owner from harness evidence
     auto: null

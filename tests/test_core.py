@@ -85,7 +85,10 @@ def test_supervisor_routes():
     policy = load_policy()
     # no calibrated threshold published -> review, never auto
     assert route(_t(), policy).route == Route.REVIEW
+    # assist mode (ADR-009): the reviewer sees Jev's suggested team to confirm or correct
+    assert route(_t(), policy).suggested_sub_team == "hl_servicing_escrow"
     assert route(_t(injection_p=0.9), policy).route == Route.QUARANTINE
+    assert route(_t(injection_p=0.9), policy).suggested_sub_team is None  # quarantined text gets no suggestion
     assert "vulnerable-customer signal" in route(_t(vulnerable_p=0.8), policy).reasons
     policy["thresholds"]["sub_team"] = {"auto": 0.9, "review": 0.6}
     ident = lambda p: p  # noqa: E731

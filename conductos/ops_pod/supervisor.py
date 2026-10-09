@@ -47,21 +47,21 @@ def route(
         reasons.append("critical severity")
     if reasons:
         return RoutingDecision(case_id=t.case_id, route=Route.REVIEW, reasons=reasons,
-                               calibrated_routing_p=cal, autonomy_level=level)
+                               calibrated_routing_p=cal, autonomy_level=level, suggested_sub_team=t.sub_team)
 
     th = policy["thresholds"]["sub_team"]
     if cal is None or th["auto"] is None:
         return RoutingDecision(case_id=t.case_id, route=Route.REVIEW,
                                reasons=["no calibrated threshold published yet"],
-                               calibrated_routing_p=cal, autonomy_level=level)
+                               calibrated_routing_p=cal, autonomy_level=level, suggested_sub_team=t.sub_team)
     if cal >= th["auto"]:
         return RoutingDecision(case_id=t.case_id, route=Route.AUTO,
                                reasons=[f"calibrated p {cal:.2f} >= auto {th['auto']}"],
-                               calibrated_routing_p=cal, autonomy_level=level)
+                               calibrated_routing_p=cal, autonomy_level=level, suggested_sub_team=t.sub_team)
     if cal >= th["review"]:
         return RoutingDecision(case_id=t.case_id, route=Route.REVIEW,
                                reasons=[f"calibrated p {cal:.2f} in review band"],
-                               calibrated_routing_p=cal, autonomy_level=level)
+                               calibrated_routing_p=cal, autonomy_level=level, suggested_sub_team=t.sub_team)
     return RoutingDecision(case_id=t.case_id, route=Route.INVESTIGATE,
                            reasons=[f"calibrated p {cal:.2f} below review band: abstain"],
-                           calibrated_routing_p=cal, autonomy_level=level)
+                           calibrated_routing_p=cal, autonomy_level=level, suggested_sub_team=t.sub_team)

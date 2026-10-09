@@ -49,3 +49,4 @@ class RoutingDecision(_Contract):
     reasons: list[str]
     calibrated_routing_p: float | None
     autonomy_level: str
+    suggested_sub_team: str | None = None  # assist mode: the team a reviewer confirms or corrects
