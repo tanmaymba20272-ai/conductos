@@ -1,468 +1,1061 @@
 {
-  "generated_at": "2026-10-08T20:20:32+00:00",
+  "generated_at": "2026-10-09T00:08:49+00:00",
   "model": "jev-1.13.0",
-  "n": 500,
-  "label_caveat": "CFPB product labels are chosen by consumers when filing; treated as a noisy proxy for truth.",
-  "accuracy": {
-    "value": 0.744,
-    "ci95": [
-      0.7039862648123214,
-      0.7802929213445977
-    ]
-  },
-  "calibration": {
-    "raw": {
-      "ece": 0.17894,
-      "bins": [
-        {
-          "lo": 0.0,
-          "hi": 0.1,
-          "n": 0,
-          "mean_p": null,
-          "accuracy": null
-        },
-        {
-          "lo": 0.1,
-          "hi": 0.2,
-          "n": 0,
-          "mean_p": null,
-          "accuracy": null
-        },
-        {
-          "lo": 0.2,
-          "hi": 0.3,
-          "n": 0,
-          "mean_p": null,
-          "accuracy": null
-        },
-        {
-          "lo": 0.3,
-          "hi": 0.4,
-          "n": 1,
-          "mean_p": 0.38,
-          "accuracy": 1.0
-        },
-        {
-          "lo": 0.4,
-          "hi": 0.5,
-          "n": 9,
-          "mean_p": 0.4588888888888888,
-          "accuracy": 0.2222222222222222
-        },
-        {
-          "lo": 0.5,
-          "hi": 0.6,
-          "n": 19,
-          "mean_p": 0.5563157894736842,
-          "accuracy": 0.3157894736842105
-        },
-        {
-          "lo": 0.6,
-          "hi": 0.7,
-          "n": 24,
-          "mean_p": 0.6516666666666666,
-          "accuracy": 0.5416666666666666
-        },
-        {
-          "lo": 0.7,
-          "hi": 0.8,
-          "n": 32,
-          "mean_p": 0.761875,
-          "accuracy": 0.59375
-        },
-        {
-          "lo": 0.8,
-          "hi": 0.9,
-          "n": 36,
-          "mean_p": 0.8472222222222222,
-          "accuracy": 0.5555555555555556
-        },
-        {
-          "lo": 0.9,
-          "hi": 1.0,
-          "n": 379,
-          "mean_p": 0.9884696569920844,
-          "accuracy": 0.820580474934037
-        }
-      ],
-      "brier": 0.4172368
-    },
-    "recalibrated_cross_fitted": {
-      "ece": 0.08783967330313878,
-      "bins": [
-        {
-          "lo": 0.0,
-          "hi": 0.1,
-          "n": 3,
-          "mean_p": 0.0,
-          "accuracy": 0.6666666666666666
-        },
-        {
-          "lo": 0.1,
-          "hi": 0.2,
-          "n": 1,
-          "mean_p": 0.1,
-          "accuracy": 0.0
-        },
-        {
-          "lo": 0.2,
-          "hi": 0.3,
-          "n": 16,
-          "mean_p": 0.24673114707521154,
-          "accuracy": 0.3125
-        },
-        {
-          "lo": 0.3,
-          "hi": 0.4,
-          "n": 7,
-          "mean_p": 0.3675391749142302,
-          "accuracy": 0.7142857142857143
-        },
-        {
-          "lo": 0.4,
-          "hi": 0.5,
-          "n": 22,
-          "mean_p": 0.46423592908691996,
-          "accuracy": 0.3181818181818182
-        },
-        {
-          "lo": 0.5,
-          "hi": 0.6,
-          "n": 109,
-          "mean_p": 0.5378333553092085,
-          "accuracy": 0.5688073394495413
-        },
-        {
-          "lo": 0.6,
-          "hi": 0.7,
-          "n": 29,
-          "mean_p": 0.6406904807573204,
-          "accuracy": 0.4827586206896552
-        },
-        {
-          "lo": 0.7,
-          "hi": 0.8,
-          "n": 33,
-          "mean_p": 0.7535419560620863,
-          "accuracy": 0.7575757575757576
-        },
-        {
-          "lo": 0.8,
-          "hi": 0.9,
-          "n": 5,
-          "mean_p": 0.807563025210084,
-          "accuracy": 0.4
-        },
-        {
-          "lo": 0.9,
-          "hi": 1.0,
-          "n": 275,
-          "mean_p": 1.0,
-          "accuracy": 0.9090909090909091
-        }
-      ]
-    }
-  },
-  "autonomy_threshold": {
+  "evaluated_split": "test",
+  "n_total": 2000,
+  "n_human_labeled": 950,
+  "label_caveat": "Primary answer key on the reported split: 492 human-labeled, 8 labeled by Claude applying the human labeler's rules. Secondary = written rules on consumer-chosen CFPB fields.",
+  "sub_team": {
     "target_precision_lower_bound": 0.95,
-    "raw": null,
-    "recalibrated": null,
-    "escalation_rate_at_recalibrated": 1.0
-  },
-  "routing": {
-    "n": 500,
-    "accuracy": {
-      "value": 0.874,
-      "ci95": [
-        0.842031642241812,
-        0.9002651430970722
-      ]
-    },
-    "calibration": {
-      "raw": {
-        "ece": 0.0812600000000001,
-        "bins": [
-          {
-            "lo": 0.0,
-            "hi": 0.1,
-            "n": 0,
-            "mean_p": null,
-            "accuracy": null
-          },
-          {
-            "lo": 0.1,
-            "hi": 0.2,
-            "n": 0,
-            "mean_p": null,
-            "accuracy": null
-          },
-          {
-            "lo": 0.2,
-            "hi": 0.3,
-            "n": 0,
-            "mean_p": null,
-            "accuracy": null
-          },
-          {
-            "lo": 0.3,
-            "hi": 0.4,
-            "n": 0,
-            "mean_p": null,
-            "accuracy": null
-          },
-          {
-            "lo": 0.4,
-            "hi": 0.5,
-            "n": 5,
-            "mean_p": 0.45199999999999996,
-            "accuracy": 0.6
-          },
-          {
-            "lo": 0.5,
-            "hi": 0.6,
-            "n": 15,
-            "mean_p": 0.554,
-            "accuracy": 0.4666666666666667
-          },
-          {
-            "lo": 0.6,
-            "hi": 0.7,
-            "n": 11,
-            "mean_p": 0.6454545454545454,
-            "accuracy": 0.45454545454545453
-          },
-          {
-            "lo": 0.7,
-            "hi": 0.8,
-            "n": 18,
-            "mean_p": 0.7594444444444445,
-            "accuracy": 0.7222222222222222
-          },
-          {
-            "lo": 0.8,
-            "hi": 0.9,
-            "n": 22,
-            "mean_p": 0.8545454545454547,
-            "accuracy": 0.6363636363636364
-          },
-          {
-            "lo": 0.9,
-            "hi": 1.0,
-            "n": 429,
-            "mean_p": 0.9930303030303032,
-            "accuracy": 0.9207459207459208
-          }
+    "tune": {
+      "n": 450,
+      "accuracy": {
+        "value": 0.8222222222222222,
+        "ci95": [
+          0.7842138891484715,
+          0.85477557325427
         ]
       },
-      "recalibrated_cross_fitted": {
-        "ece": 0.06249555503305394,
-        "bins": [
-          {
-            "lo": 0.0,
-            "hi": 0.1,
-            "n": 1,
-            "mean_p": 0.0,
-            "accuracy": 1.0
-          },
-          {
-            "lo": 0.1,
-            "hi": 0.2,
-            "n": 2,
-            "mean_p": 0.1834733893557422,
-            "accuracy": 0.5
-          },
-          {
-            "lo": 0.2,
-            "hi": 0.3,
-            "n": 1,
-            "mean_p": 0.2521008403361345,
-            "accuracy": 0.0
-          },
-          {
-            "lo": 0.3,
-            "hi": 0.4,
-            "n": 7,
-            "mean_p": 0.3452714419100974,
-            "accuracy": 0.5714285714285714
-          },
-          {
-            "lo": 0.4,
-            "hi": 0.5,
-            "n": 10,
-            "mean_p": 0.4599468895302229,
-            "accuracy": 0.7
-          },
-          {
-            "lo": 0.5,
-            "hi": 0.6,
-            "n": 19,
-            "mean_p": 0.5612549329621536,
-            "accuracy": 0.42105263157894735
-          },
-          {
-            "lo": 0.6,
-            "hi": 0.7,
-            "n": 39,
-            "mean_p": 0.6437986086964841,
-            "accuracy": 0.7692307692307693
-          },
-          {
-            "lo": 0.7,
-            "hi": 0.8,
-            "n": 50,
-            "mean_p": 0.7309511301632173,
-            "accuracy": 0.58
-          },
-          {
-            "lo": 0.8,
-            "hi": 0.9,
-            "n": 20,
-            "mean_p": 0.8236281672560848,
-            "accuracy": 0.8
-          },
-          {
-            "lo": 0.9,
-            "hi": 1.0,
-            "n": 351,
-            "mean_p": 0.9994392438836884,
-            "accuracy": 0.9715099715099715
-          }
-        ]
+      "calibration": {
+        "raw": {
+          "ece": 0.06533333333333355,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 1,
+              "mean_p": 0.26,
+              "accuracy": 0.0
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 1,
+              "mean_p": 0.32,
+              "accuracy": 1.0
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 10,
+              "mean_p": 0.43,
+              "accuracy": 0.2
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 23,
+              "mean_p": 0.5469565217391305,
+              "accuracy": 0.4782608695652174
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 35,
+              "mean_p": 0.6525714285714287,
+              "accuracy": 0.4857142857142857
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 37,
+              "mean_p": 0.7475675675675676,
+              "accuracy": 0.6216216216216216
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 46,
+              "mean_p": 0.8454347826086959,
+              "accuracy": 0.6521739130434783
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 297,
+              "mean_p": 0.9804377104377107,
+              "accuracy": 0.9629629629629629
+            }
+          ]
+        },
+        "recalibrated": {
+          "ece": 0.04513172845069932,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 2,
+              "mean_p": 0.0,
+              "accuracy": 0.5
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 8,
+              "mean_p": 0.15834558131553017,
+              "accuracy": 0.25
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 4,
+              "mean_p": 0.24333398379114501,
+              "accuracy": 0.5
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 13,
+              "mean_p": 0.36930372838301234,
+              "accuracy": 0.5384615384615384
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 25,
+              "mean_p": 0.4761471288516455,
+              "accuracy": 0.44
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 46,
+              "mean_p": 0.5471828364090772,
+              "accuracy": 0.6304347826086957
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 22,
+              "mean_p": 0.6636946785869328,
+              "accuracy": 0.5
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 30,
+              "mean_p": 0.744023930318736,
+              "accuracy": 0.6666666666666666
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 27,
+              "mean_p": 0.8432643618023735,
+              "accuracy": 0.8148148148148148
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 273,
+              "mean_p": 0.9850802948859722,
+              "accuracy": 0.9706959706959707
+            }
+          ]
+        }
+      },
+      "threshold": {
+        "threshold": 0.9356060606060608,
+        "coverage": 0.5755555555555556,
+        "n": 259,
+        "precision": 0.9768339768339769,
+        "precision_lower": 0.9503887808788517
       }
     },
-    "autonomy_threshold": {
-      "target_precision_lower_bound": 0.95,
-      "raw": null,
-      "recalibrated": null,
-      "escalation_rate_at_recalibrated": 1.0
+    "test": {
+      "n": 500,
+      "accuracy": {
+        "value": 0.762,
+        "ci95": [
+          0.7227631109081946,
+          0.7972415889816121
+        ]
+      },
+      "calibration": {
+        "raw": {
+          "ece": 0.11495999999999994,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 3,
+              "mean_p": 0.3833333333333333,
+              "accuracy": 0.3333333333333333
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 13,
+              "mean_p": 0.4423076923076924,
+              "accuracy": 0.23076923076923078
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 39,
+              "mean_p": 0.5525641025641026,
+              "accuracy": 0.3333333333333333
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 38,
+              "mean_p": 0.6523684210526316,
+              "accuracy": 0.5526315789473685
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 32,
+              "mean_p": 0.7475,
+              "accuracy": 0.625
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 48,
+              "mean_p": 0.8462500000000001,
+              "accuracy": 0.7291666666666666
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 327,
+              "mean_p": 0.9807339449541284,
+              "accuracy": 0.8807339449541285
+            }
+          ]
+        },
+        "recalibrated": {
+          "ece": 0.08006444999913345,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 13,
+              "mean_p": 0.16346153846153846,
+              "accuracy": 0.15384615384615385
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 10,
+              "mean_p": 0.2597222222222222,
+              "accuracy": 0.4
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 10,
+              "mean_p": 0.3384206045125585,
+              "accuracy": 0.2
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 38,
+              "mean_p": 0.46460521732754034,
+              "accuracy": 0.42105263157894735
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 48,
+              "mean_p": 0.5630218225704336,
+              "accuracy": 0.6041666666666666
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 23,
+              "mean_p": 0.6553501805968132,
+              "accuracy": 0.782608695652174
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 50,
+              "mean_p": 0.7525491718426501,
+              "accuracy": 0.74
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 9,
+              "mean_p": 0.8693181818181818,
+              "accuracy": 0.6666666666666666
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 299,
+              "mean_p": 0.9869967301900608,
+              "accuracy": 0.8929765886287625
+            }
+          ]
+        }
+      },
+      "at_threshold": {
+        "threshold": 0.9356060606060608,
+        "coverage": 0.564,
+        "n": 282,
+        "precision": 0.900709219858156,
+        "precision_lower": 0.8602391572518004,
+        "passes": false
+      }
     }
   },
-  "calibrator_for": "routing_group",
-  "per_class": {
-    "bank_account": {
-      "support": 107,
-      "precision": 0.8144329896907216,
-      "recall": 0.7383177570093458
+  "business_line": {
+    "target_precision_lower_bound": 0.95,
+    "tune": {
+      "n": 450,
+      "accuracy": {
+        "value": 0.8888888888888888,
+        "ci95": [
+          0.8564964275767813,
+          0.9146977511851478
+        ]
+      },
+      "calibration": {
+        "raw": {
+          "ece": 0.04068888888888893,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 3,
+              "mean_p": 0.4566666666666667,
+              "accuracy": 0.6666666666666666
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 13,
+              "mean_p": 0.5453846153846154,
+              "accuracy": 0.3076923076923077
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 26,
+              "mean_p": 0.6542307692307692,
+              "accuracy": 0.5769230769230769
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 24,
+              "mean_p": 0.7454166666666667,
+              "accuracy": 0.7083333333333334
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 32,
+              "mean_p": 0.8446875,
+              "accuracy": 0.75
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 352,
+              "mean_p": 0.9848295454545455,
+              "accuracy": 0.9602272727272727
+            }
+          ]
+        },
+        "recalibrated": {
+          "ece": 0.0292834975197872,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 1,
+              "mean_p": 0.044444444444444384,
+              "accuracy": 1.0
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 2,
+              "mean_p": 0.1559957316259838,
+              "accuracy": 1.0
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 4,
+              "mean_p": 0.2747753267973857,
+              "accuracy": 0.5
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 6,
+              "mean_p": 0.3657604922310805,
+              "accuracy": 0.5
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 9,
+              "mean_p": 0.45130918464251796,
+              "accuracy": 0.1111111111111111
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 6,
+              "mean_p": 0.5438780355447023,
+              "accuracy": 0.6666666666666666
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 32,
+              "mean_p": 0.6683206411542026,
+              "accuracy": 0.65625
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 34,
+              "mean_p": 0.7420930285595693,
+              "accuracy": 0.7352941176470589
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 44,
+              "mean_p": 0.8526646489255562,
+              "accuracy": 0.8409090909090909
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 312,
+              "mean_p": 0.9868413191121087,
+              "accuracy": 0.9743589743589743
+            }
+          ]
+        }
+      },
+      "threshold": {
+        "threshold": 0.8840909090909089,
+        "coverage": 0.6955555555555556,
+        "n": 313,
+        "precision": 0.9776357827476039,
+        "precision_lower": 0.9545636272215383
+      }
     },
-    "credit_card": {
-      "support": 67,
-      "precision": 0.7027027027027027,
-      "recall": 0.7761194029850746
-    },
-    "credit_reporting": {
-      "support": 21,
-      "precision": 0.27692307692307694,
-      "recall": 0.8571428571428571
-    },
-    "debt_collection": {
-      "support": 133,
-      "precision": 0.9042553191489362,
-      "recall": 0.6390977443609023
-    },
-    "debt_management": {
-      "support": 6,
-      "precision": 1.0,
-      "recall": 0.3333333333333333
-    },
-    "money_transfer": {
+    "test": {
+      "n": 500,
+      "accuracy": {
+        "value": 0.826,
+        "ci95": [
+          0.790317702710052,
+          0.856711046007799
+        ]
+      },
+      "calibration": {
+        "raw": {
+          "ece": 0.09276000000000002,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 2,
+              "mean_p": 0.48,
+              "accuracy": 0.5
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 28,
+              "mean_p": 0.5542857142857144,
+              "accuracy": 0.5
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 26,
+              "mean_p": 0.6511538461538463,
+              "accuracy": 0.4230769230769231
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 27,
+              "mean_p": 0.7559259259259261,
+              "accuracy": 0.6296296296296297
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 41,
+              "mean_p": 0.8514634146341464,
+              "accuracy": 0.7560975609756098
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 376,
+              "mean_p": 0.9855585106382978,
+              "accuracy": 0.901595744680851
+            }
+          ]
+        },
+        "recalibrated": {
+          "ece": 0.07417902381020625,
+          "bins": [
+            {
+              "lo": 0.0,
+              "hi": 0.1,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.1,
+              "hi": 0.2,
+              "n": 0,
+              "mean_p": null,
+              "accuracy": null
+            },
+            {
+              "lo": 0.2,
+              "hi": 0.3,
+              "n": 3,
+              "mean_p": 0.27288412071020773,
+              "accuracy": 0.6666666666666666
+            },
+            {
+              "lo": 0.3,
+              "hi": 0.4,
+              "n": 27,
+              "mean_p": 0.34967921682897524,
+              "accuracy": 0.48148148148148145
+            },
+            {
+              "lo": 0.4,
+              "hi": 0.5,
+              "n": 9,
+              "mean_p": 0.45404663923182415,
+              "accuracy": 0.3333333333333333
+            },
+            {
+              "lo": 0.5,
+              "hi": 0.6,
+              "n": 10,
+              "mean_p": 0.5555555555555556,
+              "accuracy": 0.6
+            },
+            {
+              "lo": 0.6,
+              "hi": 0.7,
+              "n": 14,
+              "mean_p": 0.6666518459235548,
+              "accuracy": 0.42857142857142855
+            },
+            {
+              "lo": 0.7,
+              "hi": 0.8,
+              "n": 55,
+              "mean_p": 0.7311130343215905,
+              "accuracy": 0.7272727272727273
+            },
+            {
+              "lo": 0.8,
+              "hi": 0.9,
+              "n": 56,
+              "mean_p": 0.8590073121323121,
+              "accuracy": 0.6964285714285714
+            },
+            {
+              "lo": 0.9,
+              "hi": 1.0,
+              "n": 326,
+              "mean_p": 0.9882511862394432,
+              "accuracy": 0.9325153374233128
+            }
+          ]
+        }
+      },
+      "at_threshold": {
+        "threshold": 0.8840909090909089,
+        "coverage": 0.682,
+        "n": 341,
+        "precision": 0.9178885630498533,
+        "precision_lower": 0.883885313950265,
+        "passes": false
+      }
+    }
+  },
+  "per_sub_team": {
+    "cb_account_servicing": {
+      "line": "Consumer Banking",
       "support": 40,
-      "precision": 0.725,
-      "recall": 0.725
+      "precision": 0.7352941176470589,
+      "recall": 0.625,
+      "judged": true
     },
-    "mortgage": {
+    "cb_fraud_disputes": {
+      "line": "Consumer Banking",
+      "support": 94,
+      "precision": 0.7049180327868853,
+      "recall": 0.9148936170212766,
+      "judged": true
+    },
+    "cb_opening_onboarding": {
+      "line": "Consumer Banking",
+      "support": 16,
+      "precision": 1.0,
+      "recall": 0.6875,
+      "judged": false
+    },
+    "cb_fees_overdraft": {
+      "line": "Consumer Banking",
+      "support": 15,
+      "precision": 0.8666666666666667,
+      "recall": 0.8666666666666667,
+      "judged": false
+    },
+    "cb_payments_transfers": {
+      "line": "Consumer Banking",
+      "support": 15,
+      "precision": 0.45,
+      "recall": 0.6,
+      "judged": false
+    },
+    "ca_card_personal_loan_servicing": {
+      "line": "Card Services & Auto",
+      "support": 76,
+      "precision": 0.8571428571428571,
+      "recall": 0.7105263157894737,
+      "judged": true
+    },
+    "ca_card_disputes": {
+      "line": "Card Services & Auto",
+      "support": 85,
+      "precision": 0.868421052631579,
+      "recall": 0.7764705882352941,
+      "judged": true
+    },
+    "ca_collections_recoveries": {
+      "line": "Card Services & Auto",
       "support": 33,
-      "precision": 0.9393939393939394,
-      "recall": 0.9393939393939394
+      "precision": 0.8181818181818182,
+      "recall": 0.8181818181818182,
+      "judged": true
     },
-    "personal_loan": {
-      "support": 30,
+    "ca_card_applications": {
+      "line": "Card Services & Auto",
+      "support": 5,
       "precision": 0.6666666666666666,
-      "recall": 0.7333333333333333
+      "recall": 0.8,
+      "judged": false
     },
-    "prepaid_card": {
-      "support": 11,
-      "precision": 0.6666666666666666,
-      "recall": 0.5454545454545454
+    "ca_auto_servicing": {
+      "line": "Card Services & Auto",
+      "support": 7,
+      "precision": 0.7777777777777778,
+      "recall": 1.0,
+      "judged": false
     },
-    "student_loan": {
-      "support": 21,
-      "precision": 0.9545454545454546,
-      "recall": 1.0
+    "hl_servicing_escrow": {
+      "line": "Home Lending",
+      "support": 10,
+      "precision": 1.0,
+      "recall": 0.3,
+      "judged": false
     },
-    "vehicle_loan": {
-      "support": 31,
-      "precision": 0.8709677419354839,
-      "recall": 0.8709677419354839
+    "hl_loss_mitigation": {
+      "line": "Home Lending",
+      "support": 3,
+      "precision": 0.5,
+      "recall": 1.0,
+      "judged": false
+    },
+    "hl_origination": {
+      "line": "Home Lending",
+      "support": 0,
+      "precision": 0.0,
+      "recall": null,
+      "judged": false
+    },
+    "sh_closures_restrictions": {
+      "line": "Shared",
+      "support": 72,
+      "precision": 0.7361111111111112,
+      "recall": 0.7361111111111112,
+      "judged": true
+    },
+    "sh_credit_bureau_disputes": {
+      "line": "Shared",
+      "support": 29,
+      "precision": 0.7692307692307693,
+      "recall": 0.6896551724137931,
+      "judged": false
     }
   },
-  "top_confusions": [
+  "tune_confusions": [
     {
-      "label": "debt_collection",
-      "predicted": "credit_reporting",
-      "count": 39
-    },
-    {
-      "label": "bank_account",
-      "predicted": "credit_card",
-      "count": 12
-    },
-    {
-      "label": "bank_account",
-      "predicted": "money_transfer",
-      "count": 10
-    },
-    {
-      "label": "money_transfer",
-      "predicted": "bank_account",
+      "label": "cb_fraud_disputes",
+      "predicted": "ca_card_disputes",
       "count": 6
     },
     {
-      "label": "credit_card",
-      "predicted": "bank_account",
+      "label": "sh_closures_restrictions",
+      "predicted": "cb_fraud_disputes",
       "count": 5
     },
     {
-      "label": "personal_loan",
-      "predicted": "debt_collection",
+      "label": "sh_credit_bureau_disputes",
+      "predicted": "cb_fraud_disputes",
+      "count": 5
+    },
+    {
+      "label": "sh_closures_restrictions",
+      "predicted": "cb_payments_transfers",
       "count": 4
     },
     {
-      "label": "credit_card",
-      "predicted": "personal_loan",
+      "label": "ca_collections_recoveries",
+      "predicted": "ca_auto_servicing",
       "count": 4
     },
     {
-      "label": "debt_collection",
-      "predicted": "credit_card",
+      "label": "cb_fraud_disputes",
+      "predicted": "cb_account_servicing",
       "count": 4
+    },
+    {
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "cb_account_servicing",
+      "count": 4
+    },
+    {
+      "label": "cb_account_servicing",
+      "predicted": "sh_closures_restrictions",
+      "count": 3
+    },
+    {
+      "label": "ca_collections_recoveries",
+      "predicted": "sh_credit_bureau_disputes",
+      "count": 3
+    },
+    {
+      "label": "sh_closures_restrictions",
+      "predicted": "ca_card_personal_loan_servicing",
+      "count": 3
+    }
+  ],
+  "tune_error_examples": [
+    {
+      "split": "tune",
+      "label": "cb_account_servicing",
+      "predicted": "cb_fraud_disputes",
+      "p": 1.0,
+      "narrative_head": "I suffered property loss or stolen in the amount of over {$250000.00} when Wells Fargo Bank merge with XXXX XXXX in XXXX. I rented a Safe Deposit Box form XXXX after XXXX XXXX of XXXX and in XXXX with XXXX XXXX XXXX arranged to pay for rental fees with automatic withdrawal over draft protection. XXXX XXXX XXXX in XXXX merge with Wachovia Bank and the account and contract remained. In XXXX Wells Fa"
+    },
+    {
+      "split": "tune",
+      "label": "sh_credit_bureau_disputes",
+      "predicted": "cb_fraud_disputes",
+      "p": 1.0,
+      "narrative_head": "Attach this dispute index to every submission Dispute Index / Items Not Mine Furnisher Routing XXXX Account XXXX Open date Dispute reason XXXX XXXX XXXX XXXX XXXX XXXX XX/XX/XXXX Never opened, authorized, signed for, used, or benefited from this account XXXX XXXX XXXX XXXX XXXX XXXX XX/XX/XXXX Never opened, authorized, signed for, used, or benefited from this account XXXX XXXX XXXX XXXX XXXX XXXX "
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "cb_opening_onboarding",
+      "p": 1.0,
+      "narrative_head": "On Thursday XX/XX/XXXX I contacted Capital One to find out about my dispute for the {$200.00} bonus they will offering when I open my saver account. They did not have my complaint on file and I could not find out why I was denied. The representative said there's XXXX denials XXXX is for the bonus and XXXX is for the actual credit card. I received the credit card with a {$4000.00} limit but was ref"
+    },
+    {
+      "split": "tune",
+      "label": "cb_fraud_disputes",
+      "predicted": "ca_card_disputes",
+      "p": 0.99,
+      "narrative_head": "On XX/XX/year>, I was charged approximately {$1300.00} by XXXX for a reservation. Prior to this charge, I attempted to cancel the reservation before the cancellation policy penalty window was in effect. Despite this, I was still charged the full amount. On XX/XX/year>, I filed a dispute with Wells Fargo and was issued a provisional credit for the full amount. On the same day, XXXX issued a partial"
+    },
+    {
+      "split": "tune",
+      "label": "sh_closures_restrictions",
+      "predicted": "cb_fraud_disputes",
+      "p": 0.99,
+      "narrative_head": "To Whom It May Concern, I am formally disputing your determination regarding the alleged issuance and negotiation of the check connected to my closed account under case number XXXX. I never received the check that Chase claims was mailed on XX/XX/year>. Additionally, I did not cash, deposit, endorse, authorize, or negotiate this check in any way. Your letter states that the check was allegedly cas"
+    },
+    {
+      "split": "tune",
+      "label": "sh_closures_restrictions",
+      "predicted": "cb_fraud_disputes",
+      "p": 0.95,
+      "narrative_head": "It is well documented. I need the authority that can provide fair relief to take action because the banks actions and inactions have destroyed my life and the bank refuses to provide fair relief. Their previous consent orders and stipulation orders describe what they say they remedied and yet in XXXX we're still doing to me the customer 4 years after closing my account. In XXXX they contacted myse"
+    },
+    {
+      "split": "tune",
+      "label": "sh_credit_bureau_disputes",
+      "predicted": "cb_fraud_disputes",
+      "p": 0.94,
+      "narrative_head": "My XXXX credit report shows that I opened an account with Bank of America in XX/XX/year>. I have not opened any credit card with Bank of America at all. I called Bank of America and they said that they do not have a credit card under my Social Security number. XXXX says that the card is mine. The card is not mine. I do not have an account with Bank of America."
+    },
+    {
+      "split": "tune",
+      "label": "sh_closures_restrictions",
+      "predicted": "cb_fraud_disputes",
+      "p": 0.92,
+      "narrative_head": "Wells Fargo notified me that my deposit accounts had been closed because they alleged that a fraudulent check in the amount of {$1200.00} had been deposited into my account through the Wells Fargo mobile banking app. I immediately informed Wells Fargo that I had no knowledge of this transaction, that I did not deposit the check, and that I had never shared my online banking credentials with anyone"
+    },
+    {
+      "split": "tune",
+      "label": "hl_servicing_escrow",
+      "predicted": "hl_loss_mitigation",
+      "p": 0.91,
+      "narrative_head": "XXXX XXXX XXXX was closed by the FDIC on XX/XX/XXXX. FDIC became receiver and confirmed my loan was never transferred to JPMorgan Chase. Despite this, Chase recorded a XXXX Assignment of Mortgage to XXXX as Trustee for XXXX XXXX. This assignment is impossible because XXXX no longer existed, the trust was extinguished in XXXX, and the bonds were canceled in the WMI Liquidation. XXXX confirmed they "
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "cb_account_servicing",
+      "p": 0.9,
+      "narrative_head": "I am a XXXX XXXX for XXXX years, enrolled in paperless statements. My billing cycle ends on the XXXX of the month, and I received an email on XX/XX/XXXX notifying my that my paperless statement is available online. The website shows an error message when I attempt to download or view the PDF of my current statement. It is XX/XX/XXXX and I still can not download the current statement. I asked for h"
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "cb_account_servicing",
+      "p": 0.9,
+      "narrative_head": "I contacted Citi to access my credit card statements online as they were unavailable. I reached out numerous times and finally I wrote a better business bureau complaint. The complaint stated that I needed my credit card statement in order to file my taxes. I received a letter and a call from the XXXX management team on XX/XX/XXXX from Citi stating in writing ( attached ) and on the phone that the"
+    },
+    {
+      "split": "tune",
+      "label": "sh_closures_restrictions",
+      "predicted": "cb_account_servicing",
+      "p": 0.89,
+      "narrative_head": "I updated my new phone which Citibank two weeks ago I was told it would take 48 hours for my number to be verified in my account two weeks later now its XX/XX/XXXX I call because I dont have access to my account they tell me that the number that I have on file doesnt match its their issue because they did not update my number when I called to update it. I cant get one text I cant access my account"
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_applications",
+      "predicted": "ca_card_disputes",
+      "p": 0.89,
+      "narrative_head": "REGULATORY COMPLAINT : FORMAL REPORT OF SYSTEMIC CREDIT CARD FACTORING, APPLICATION MANIPULATION, AND MULTI-PARTY COLLUSION Target Entities : XXXX XXXX XXXX ( Primary Merchant Account ) XXXX XXXX / XXXX XXXX XXXX XXXX XXXX ) XXXX Summary I am filing this formal complaint with the CFPB to report an organized, deceptive financial scheme and illicit credit card factoring ring operated by XXXX XXXX XX"
+    },
+    {
+      "split": "tune",
+      "label": "ca_collections_recoveries",
+      "predicted": "sh_credit_bureau_disputes",
+      "p": 0.87,
+      "narrative_head": "I recently reviewed my credit report and discovered a collection account listed as XXXX XXXX XXXXXXXX XXXX XXXX XXXXXXXX which I do not recognize and do not believe is accurate. I have not received proper validation of this alleged debt as required under 15 U.S.C. 1692g ( FDCPA ), which mandates that a debt collector provide validation of the debt upon dispute. Furthermore, under 15 U.S.C. 1681s-2"
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "ca_card_disputes",
+      "p": 0.87,
+      "narrative_head": "I am writing to dispute and demand reversal of an annual fee charged to my XXXX credit card account immediately prior to the transfer/conversion of the account portfolio to Citibank. XXXX assessed an annual fee to my account on XX/XX/XXXX. I sent a dispute letter to the address located on my statement, when I received the statement, saying that I was under the impression from the letter sent by XX"
+    },
+    {
+      "split": "tune",
+      "label": "ca_auto_servicing",
+      "predicted": "ca_card_personal_loan_servicing",
+      "p": 0.87,
+      "narrative_head": "These requests with their canned answers isn't fitting my needs. I am here to complain about Capital One keeping customers at arms length. They only offer a virtual assistant that is not helpful except the most basic needs. I wanted to chat with a human representative but all I get is the run around in a circle because they do not want you to be able to \" chat '' with them. Their options are to ca"
+    },
+    {
+      "split": "tune",
+      "label": "sh_closures_restrictions",
+      "predicted": "ca_card_personal_loan_servicing",
+      "p": 0.85,
+      "narrative_head": "XXXX initiated a new verification process for my credit card. The link didnt work so I called in. A new card was opened, but was not linked to my XXXX app or current credit card. I continued to pay the balance of my credit card through the app every month but the new card was not linked nor paid which caused missed payments. They closed both accounts. I was not aware the new card was not connected"
+    },
+    {
+      "split": "tune",
+      "label": "cb_opening_onboarding",
+      "predicted": "ca_card_applications",
+      "p": 0.85,
+      "narrative_head": "Approximately in XXXX 2026 I was denied a joint account with my elderly grandmother with no explanation given from Chase Bank . I have been denied many times before for credit cards as well through this bank with no explanation given. I have never owed them any debt and have had accounts with them in the past."
+    },
+    {
+      "split": "tune",
+      "label": "ca_collections_recoveries",
+      "predicted": "cb_fraud_disputes",
+      "p": 0.83,
+      "narrative_head": "THIS DEBT WAS FROM IDENTITY THEFT WAY BACK XXXX. I HAVE NO IDEA WHAT PERSON OBTAINED MY IDENTITY OR ACQUIRED A CREDIT CARD INMY NAME. BUT ITS OVER 5 YEARS AND NOW A DEBT BUYER IS RUINING MY CREDIT BASSED UPON AN IDENTITY THEFT ISSUE THAT CITIBANK REFUSED TO FOLLOW THROUGH ON ANY INVESTIGATION. THIS COLLECTION NEEDS TO BE DELETED PERMANENTLY!!! DEMAND FOR DEBT VALIDATION, PROOF OF OWNERSHIP, CHAIN "
+    },
+    {
+      "split": "tune",
+      "label": "cb_account_servicing",
+      "predicted": "cb_fraud_disputes",
+      "p": 0.82,
+      "narrative_head": "So I was online gambling beginning of XXXX and I lost {$17000.00} because Wells Fargo kept on say stating that there were money in my checking account when there was not so every time I requested money to be transferred to an online gambling site it went through thousands of thousands of dollars."
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "sh_closures_restrictions",
+      "p": 0.81,
+      "narrative_head": "I am a longtime Capital One credit card customer in good standing. In XX/XX/year>, Capital One revoked my access to XXXX XXXX XXXX numbers without notice or explanation. When I log in, I receive the error : \" Looks like you're not eligible. Right now, you are not able to create or use virtual cards with XXXX. '' The virtual card management option has been removed from both the web portal and mobil"
+    },
+    {
+      "split": "tune",
+      "label": "cb_fraud_disputes",
+      "predicted": "cb_account_servicing",
+      "p": 0.81,
+      "narrative_head": "On XX/XX/2026, I deposited cash into a Chase ATM in multiple batches. The first two deposits were successfully accepted, totaling approximately {$2300.00}, which the bank has acknowledged. During the third deposit, the ATM displayed an updating message, then restarted and showed an error. At one point, my card could not be retrieved. The transaction was interrupted and never completed, and no rece"
+    },
+    {
+      "split": "tune",
+      "label": "sh_credit_bureau_disputes",
+      "predicted": "ca_card_personal_loan_servicing",
+      "p": 0.81,
+      "narrative_head": "I had a one-time XXXX late payment on my Capital One card due to my grandmother passing .. Ive been a customer for XXXX years with perfect history before/after. I paid the account current and made payment on my other cards to show financial responsibility. I requested a goodwill adjustment to remove the late as a one-time courtesy and was denied. Im asking CFPBs help to request Cap1 reconsider a g"
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "cb_account_servicing",
+      "p": 0.81,
+      "narrative_head": "I called Citibank customer service in XXXX, XXXX and XXXX of XXXX and spoke to a customer service rep each time at length about getting access to historical cc statements online or in the mail for all months XX/XX/XXXX - XX/XX/XXXX. They told me in call # 1 that I would be given access online within a few days and that I would also receive the statements in the mail. I received one month 's statem"
+    },
+    {
+      "split": "tune",
+      "label": "ca_card_personal_loan_servicing",
+      "predicted": "ca_card_disputes",
+      "p": 0.81,
+      "narrative_head": "Urgent : Fraudulent activity. Freeze account request RE : Formal balance Dispute, Billing errors dispute, Transactions dispute, double billing dispute. XXXX XXXX request. Closed credit card by Wells Fargo in XX/XX/XXXX. This is a formal dispute and emergency request under the FAIR CREDIT BILLING ACT and the CREDIT CARD ACT of 2009. I was recently in a XXXX XXXX XXXX, XXXX by a driver speeding thro"
     }
   ],
   "signals": {
     "severity_distribution": {
-      "3": 6,
-      "2": 117,
-      "1": 328,
-      "0": 49
+      "1": 349,
+      "2": 116,
+      "0": 31,
+      "3": 4
     },
     "vulnerable_flag_rate": 0.18,
-    "regulatory_risk_flag_rate": 0.27,
+    "regulatory_risk_flag_rate": 0.32,
     "risk_flag_rates": {
-      "alleged_deception": 0.22,
-      "alleged_discrimination": 0.008,
-      "threats_or_harassment": 0.066
+      "alleged_deception": 0.29,
+      "alleged_discrimination": 0.012,
+      "threats_or_harassment": 0.036
     },
     "injection_flag_rate": 0.0,
-    "note": "Severity and risk flags have no ground-truth labels yet; distributions only (see Red-Team #1)."
+    "note": "Severity and risk flags have no ground-truth labels yet; distributions only."
   },
   "ops": {
-    "latency_ms_p50": 111.36947000000674,
-    "latency_ms_p95": 149.1527973499984,
-    "cost_usd_total": 0.025571658,
-    "cost_usd_per_case": 5.1143316000000006e-05
+    "latency_ms_p50": 119.54290050000793,
+    "latency_ms_p95": 158.55951199999367,
+    "cost_usd_total": 0.058526832,
+    "cost_usd_per_case": 6.160719157894738e-05
+  },
+  "cfpb_rule_key": {
+    "n": 1000,
+    "sub_team_accuracy": 0.538,
+    "business_line_accuracy": 0.744
   },
   "baseline_rules": {
-    "coverage": 0.832,
-    "accuracy_all": 0.55,
-    "accuracy_when_answered": 0.6610576923076923
+    "coverage": 0.944,
+    "accuracy_all": 0.43,
+    "accuracy_when_answered": 0.4555084745762712
   }
 }
